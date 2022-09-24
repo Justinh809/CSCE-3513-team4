@@ -19,8 +19,8 @@ public class LaserTag
         }
         splash.hideSplash();
 
-        // TODO: Add code to start player entry screen here
+        PlayerEntry playerEntry = new PlayerEntry();
+        playerEntry.showPlayerEntry();
 
-        System.exit(1);
     }
 }
