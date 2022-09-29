@@ -10,7 +10,7 @@ public class Model{
     private final String user = "kqmxvinhydttmo";
     private final String password = "66b9145075195cf7e932d1c515dc3b91b58bd987ec2649b7512fd58e4591c0d6";
     Connection connection;
-    String storedCodeName;
+    String storedCodeName, storedID;
 
     // Constructor for the model class
     public Model()
@@ -42,25 +42,54 @@ public class Model{
     }
 
     // Store codename and return True or false
-    public Boolean Search()
+    public Boolean Search(String id)
     {
+        // Write the query that will be used to search for the passed in id
+        String query = String.format("Select codename from player where id=%s", id);
+        storedID = id;
         try {
-            // Try to create a statement
+            // create a statement
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("Select codename from player where id=1");
+            // execute statement and gather a result set
+            ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
+                // get codename and store it as a variable for later
                 String codeName = rs.getString("codename");
                 System.out.println(codeName);
                 storedCodeName = codeName;
+                // return that the search was successful
                 return true;
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            return false;
         }
-
-
+        // If here it means an exception was thrown and the search was unsuccessful
         return false;
+    }
+
+    // Send the codename to the presenter
+    public String getCodeName()
+    {
+        return storedCodeName;
+    }
+
+    // Add the codename and id pair to the database
+    public void addCodeName(String CodeName)
+    {
+        // Write the query that will be used to add the codenmae for the earlier passed in id
+        String query = String.format("INSERT INTO player(id, codename) " +
+                                    "Values (%s, '%s')", storedID, CodeName);
+        try {
+            // Create a statement
+            Statement stmt = connection.createStatement();
+            // Execute the statement
+            stmt.executeUpdate(query);
+            // Print that it was successful
+            System.out.println("Successful");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
