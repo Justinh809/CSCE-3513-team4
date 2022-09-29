@@ -35,7 +35,7 @@ public class LaserTag
             else
             {
                 //Example Code
-                // String codeName = playerEntry.sendCodeName();
+                // String codeName = playerEntry.enterCodeName();
                 model.addCodeName("Magnum");
             }
             model.connection.close();
