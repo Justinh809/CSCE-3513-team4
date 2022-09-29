@@ -12,8 +12,8 @@ public class LaserTag
     public static void main(String[] args)
     {
         SplashScreen splash = new SplashScreen();
-        Model model = new Model();
         splash.showSplash();
+        Model model = new Model();
         try {
             Thread.sleep(3000); // wait for 3 seconds
         } catch (Exception e) {
