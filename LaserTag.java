@@ -5,11 +5,18 @@
  * The main flow program for the laser tag project.
  */
 
-public class LaserTag
+public class LaserTag extends Thread
 {
+    Presenter presenter; 
+
+    LaserTag(){
+        presenter = new Presenter(); 
+    }
+
     public static void main(String[] args)
     {
-        SplashScreen splash = new SplashScreen();
+
+        /*SplashScreen splash = new SplashScreen();
         splash.showSplash();
         try {
             Thread.sleep(3000); // wait for 3 seconds
@@ -20,7 +27,24 @@ public class LaserTag
         splash.hideSplash();
 
         PlayerEntry playerEntry = new PlayerEntry();
-        playerEntry.showPlayerEntry();
+        playerEntry.showPlayerEntry();*/
+        LaserTag laserTag = new LaserTag(); 
+        laserTag.run(); 
+    }
 
+    public void run(){
+        presenter.startApp();
+        while (true){
+            presenter.update(); // update anything that needs to be updated  
+
+            //slow down / not sure if this is needed or even timed right
+            try 
+            {
+				Thread.sleep(25); 
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.exit(1);
+			} 
+        }
     }
 }
