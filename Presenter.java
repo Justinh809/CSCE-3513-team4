@@ -1,30 +1,33 @@
 import java.sql.SQLException;
-import java.util.Scanner;
+//import java.util.Scanner;     //Testing Purposes reading input without UI
 
 public class Presenter {
-    Model model;
-    SplashScreen splash;
-    // PlayerEntryScreen playerEntry;
-    boolean connectionMade;
-    String codeName;
-    Scanner sc;
+    Model model; // create a model inside presenter
+    SplashScreen splash; // create a splash screen inside presenter
+    // PlayerEntryScreen playerEntry; // waiting for player Entry Screen to be
+    // finished
+    String codeName; // hold onto codeName if needed
+    // Scanner sc; //Testing Purposes Reading in input from cmd while waiting for
+    // player entry
 
     // constructor will initialize the model and each view
     Presenter() {
 
-        splash = new SplashScreen();
-        model = new Model();
+        splash = new SplashScreen(); // load splash screen
+        model = new Model(); // load model
         // playerEntry = new PlayerEntryScreen(this); // I think we must pass the
         // presenter into the player entry screen constructor so
         // it can refer back to
-        // cinnectionMade = false;
-        codeName = "Henry";
-        sc = new Scanner(System.in);
+
+        codeName = "Henry"; // example for now
+        // sc = new Scanner(System.in); //testing purposes reading in input without
+        // player entry
 
     }
 
     public void startApp() {
         splash.showSplash();
+        // displaying splash for 3 seconds before we move on
         try {
             Thread.sleep(3000); // I believe this makes the main thread wait 3 seconds
         } catch (Exception e) {
@@ -37,6 +40,12 @@ public class Presenter {
     }
 
     public void startGame() { // after the players are entered and the start button is pressed
+        // playerEntry.hide()
+        try {
+            model.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         // gameScreen.show()
         // model.runGame()
     }
@@ -47,22 +56,18 @@ public class Presenter {
 
     void searchDataBaseForPlayer(String a) {
         // if codename exists at ID a, return true
-        try {
-            if (model.Search(a)) {
-                codeName = model.getCodeName(); // I would prefer for the model to be able to flat out get the codename
-                                                // using the id, but this should still be fine
-                // either store this codename as a variable or pass it straight into player
-                // entry
-            } else {
-                // codeName = playerEntry.getNewCodeName();
-                System.out.println("Enter Code Name\n");
-                codeName = sc.nextLine();
-                model.addCodeName(codeName); // may add the id to this function in the model
-            }
-            model.connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (model.Search(a)) {
+            codeName = model.getCodeName(); // I would prefer for the model to be able to flat out get the codename
+                                            // using the id, but this should still be fine
+            // either store this codename as a variable or pass it straight into player
+            // entry
+        } else {
+            // codeName = playerEntry.getNewCodeName();
+            System.out.println("Enter Code Name\n");
+            // codeName = sc.nextLine(); //Testing Purposes get a codeName without UI
+            model.addCodeName(codeName); // may add the id to this function in the model
         }
+
     }
 
     void kill() { // exit game button or something can call this

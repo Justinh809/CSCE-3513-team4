@@ -1,6 +1,3 @@
-import java.sql.SQLException;
-import java.util.*;
-
 /*
  * Laser Tag for Software Engineering (CSCE3513) (TEAM 4)
  * Date: 9/16/2022
@@ -8,40 +5,33 @@ import java.util.*;
  * The main flow program for the laser tag project.
  */
 
-public class LaserTag extends Thread {
+//import java.sql.SQLException;     // We don't have to do anything in SQL in this class for now
+//import java.util.Scanner;     //Testing Purposes Reading input without UI
+// I believe both of these import statements are unnecessary here 
+
+//removed extends thread. Seems fine so far
+public class LaserTag {
     Presenter presenter;
-    Scanner sc;
+    // Scanner sc; //Testing Purpose allowing cmd line input
 
     LaserTag() {
         presenter = new Presenter();
-        sc = new Scanner(System.in);
+        // sc = new Scanner(System.in); // Testing Purposes allowing cmd line input
     }
 
+    // Main function will create the laserTag game and run it
     public static void main(String[] args) {
-
-        /*
-         * SplashScreen splash = new SplashScreen();
-         * splash.showSplash();
-         * Model model = new Model();
-         * try {
-         * Thread.sleep(3000); // wait for 3 seconds
-         * } catch (Exception e) {
-         * e.printStackTrace();
-         * System.exit(1);
-         * }
-         * splash.hideSplash();
-         * 
-         * PlayerEntry playerEntry = new PlayerEntry();
-         * playerEntry.showPlayerEntry();
-         */
         LaserTag laserTag = new LaserTag();
         laserTag.run();
     }
 
     public void run() {
         presenter.startApp();
-        System.out.println("Enter ID\n");
-        presenter.searchDataBaseForPlayer(sc.nextLine());
+        // System.out.println("Enter ID\n"); //Testing purposes searching through
+        // database without UI
+        // presenter.searchDataBaseForPlayer(sc.nextLine()); // Testing Purposes
+        // searching through databse without UI
+        presenter.startGame();
         while (true) {
             presenter.update(); // update anything that needs to be updated
 
