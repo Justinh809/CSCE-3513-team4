@@ -5,22 +5,43 @@
  * The main flow program for the laser tag project.
  */
 
-public class LaserTag
-{
-    public static void main(String[] args)
-    {
-        SplashScreen splash = new SplashScreen();
-        splash.showSplash();
-        try {
-            Thread.sleep(3000); // wait for 3 seconds
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
+//import java.sql.SQLException;     // We don't have to do anything in SQL in this class for now
+//import java.util.Scanner;     //Testing Purposes Reading input without UI
+// I believe both of these import statements are unnecessary here 
+
+//removed extends thread. Seems fine so far
+public class LaserTag {
+    Presenter presenter;
+    // Scanner sc; //Testing Purpose allowing cmd line input
+
+    LaserTag() {
+        presenter = new Presenter();
+        // sc = new Scanner(System.in); // Testing Purposes allowing cmd line input
+    }
+
+    // Main function will create the laserTag game and run it
+    public static void main(String[] args) {
+        LaserTag laserTag = new LaserTag();
+        laserTag.run();
+    }
+
+    public void run() {
+        presenter.startApp();
+        // System.out.println("Enter ID\n"); //Testing purposes searching through
+        // database without UI
+        // presenter.searchDataBaseForPlayer(sc.nextLine()); // Testing Purposes
+        // searching through databse without UI
+        presenter.startGame();
+        while (true) {
+            presenter.update(); // update anything that needs to be updated
+
+            // slow down / not sure if this is needed or even timed right
+            try {
+                Thread.sleep(25);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
         }
-        splash.hideSplash();
-
-        PlayerEntry playerEntry = new PlayerEntry();
-        playerEntry.showPlayerEntry();
-
     }
 }
