@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.util.*;
 
 /*
  * Laser Tag for Software Engineering (CSCE3513) (TEAM 4)
@@ -9,9 +10,11 @@ import java.sql.SQLException;
 
 public class LaserTag extends Thread {
     Presenter presenter;
+    Scanner sc;
 
     LaserTag() {
         presenter = new Presenter();
+        sc = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
@@ -37,6 +40,8 @@ public class LaserTag extends Thread {
 
     public void run() {
         presenter.startApp();
+        System.out.println("Enter ID\n");
+        presenter.searchDataBaseForPlayer(sc.nextLine());
         while (true) {
             presenter.update(); // update anything that needs to be updated
 
