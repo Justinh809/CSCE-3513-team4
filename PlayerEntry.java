@@ -16,10 +16,20 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class PlayerEntry
 {
-    private JFrame frame;
+	final int MAX_PLAYERS = 15;
+	ArrayList<JTextField> red_ids = new ArrayList<JTextField>();
+	ArrayList<JTextField> green_ids = new ArrayList<JTextField>();
+	ArrayList<JTextField> red_codenames = new ArrayList<JTextField>();
+	ArrayList<JTextField> green_codenames = new ArrayList<JTextField>();
+
+	ArrayList<String[]> red_players = new ArrayList<String[]>();
+	ArrayList<String[]> green_players = new ArrayList<String[]>();
+
+   	private JFrame frame;
 	private JTextField red_codename_1;
 	private JTextField red_codename_2;
 	private JTextField red_codename_3;
@@ -98,7 +108,7 @@ public class PlayerEntry
 	private JCheckBox green_checkbox_14;
 	private JCheckBox green_checkbox_15;
 
-    public PlayerEntry()
+    public PlayerEntry(Presenter presenter)
     {
         frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -115,6 +125,7 @@ public class PlayerEntry
 		red_codename_1.setBounds(131, 73, 195, 20);
 		red_panel.add(red_codename_1);
 		red_codename_1.setColumns(30);
+		red_codenames.add(red_codename_1);
 		
 		JLabel label_red_team = new JLabel("RED TEAM");
 		label_red_team.setBounds(95, 11, 141, 34);
@@ -125,146 +136,197 @@ public class PlayerEntry
 		red_codename_2.setColumns(30);
 		red_codename_2.setBounds(131, 98, 195, 20);
 		red_panel.add(red_codename_2);
+		red_codenames.add(red_codename_2);
 		
 		red_codename_3 = new JTextField();
 		red_codename_3.setColumns(20);
 		red_codename_3.setBounds(131, 123, 195, 20);
 		red_panel.add(red_codename_3);
+		red_codenames.add(red_codename_3);
 		
 		red_codename_4 = new JTextField();
 		red_codename_4.setColumns(20);
 		red_codename_4.setBounds(131, 148, 195, 20);
 		red_panel.add(red_codename_4);
+		red_codenames.add(red_codename_4);
 		
 		red_codename_5 = new JTextField();
 		red_codename_5.setColumns(20);
 		red_codename_5.setBounds(131, 173, 195, 20);
 		red_panel.add(red_codename_5);
+		red_codenames.add(red_codename_5);
 		
 		red_codename_6 = new JTextField();
 		red_codename_6.setColumns(20);
 		red_codename_6.setBounds(131, 198, 195, 20);
 		red_panel.add(red_codename_6);
+		red_codenames.add(red_codename_6);
 		
 		red_codename_7 = new JTextField();
 		red_codename_7.setColumns(20);
 		red_codename_7.setBounds(131, 223, 195, 20);
 		red_panel.add(red_codename_7);
+		red_codenames.add(red_codename_7);
 		
 		red_codename_8 = new JTextField();
 		red_codename_8.setColumns(20);
 		red_codename_8.setBounds(131, 248, 195, 20);
 		red_panel.add(red_codename_8);
+		red_codenames.add(red_codename_8);
 		
 		red_codename_9 = new JTextField();
 		red_codename_9.setColumns(20);
 		red_codename_9.setBounds(131, 273, 195, 20);
 		red_panel.add(red_codename_9);
+		red_codenames.add(red_codename_9);
 		
 		red_codename_10 = new JTextField();
 		red_codename_10.setColumns(20);
 		red_codename_10.setBounds(131, 298, 195, 20);
 		red_panel.add(red_codename_10);
+		red_codenames.add(red_codename_10);
 		
 		red_codename_11 = new JTextField();
 		red_codename_11.setColumns(20);
 		red_codename_11.setBounds(131, 323, 195, 20);
 		red_panel.add(red_codename_11);
+		red_codenames.add(red_codename_11);
 		
 		red_codename_12 = new JTextField();
 		red_codename_12.setColumns(20);
 		red_codename_12.setBounds(131, 348, 195, 20);
 		red_panel.add(red_codename_12);
+		red_codenames.add(red_codename_12);
 		
 		red_codename_13 = new JTextField();
 		red_codename_13.setColumns(20);
 		red_codename_13.setBounds(131, 373, 195, 20);
 		red_panel.add(red_codename_13);
+		red_codenames.add(red_codename_13);
 		
 		red_codename_14 = new JTextField();
 		red_codename_14.setColumns(20);
 		red_codename_14.setBounds(131, 398, 195, 20);
 		red_panel.add(red_codename_14);
+		red_codenames.add(red_codename_14);
 		
 		red_codename_15 = new JTextField();
 		red_codename_15.setColumns(20);
 		red_codename_15.setBounds(131, 423, 195, 20);
 		red_panel.add(red_codename_15);
+		red_codenames.add(red_codename_15);
 		
 		red_id_1 = new JTextField();
 		red_id_1.setBounds(41, 73, 86, 20);
 		red_panel.add(red_id_1);
 		red_id_1.setColumns(10);
+		red_ids.add(red_id_1);
+		red_id_1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				if (presenter.searchDataBaseForPlayer(red_id_1.getText())) // see if the id is in the database
+				{
+					red_codename_1.setText(presenter.getCodeName(red_id_1.getText())); // set the corresponding codename to the codename matching id
+					red_codename_1.setEnabled(false); // make the codename field uneditable
+				}
+				else
+				{
+					red_codename_1.setText(""); // empty 
+					red_codename_1.setEnabled(true); // set the codename field to be editable
+					red_codename_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e)
+						{
+							presenter.addPlayer(red_id_1.getText(), red_codename_1.getText());
+						}
+					});
+				}
+			}
+		});
 		
 		red_id_2 = new JTextField();
 		red_id_2.setColumns(10);
 		red_id_2.setBounds(41, 98, 86, 20);
 		red_panel.add(red_id_2);
+		red_ids.add(red_id_2);
 		
 		red_id_3 = new JTextField();
 		red_id_3.setColumns(10);
 		red_id_3.setBounds(41, 123, 86, 20);
 		red_panel.add(red_id_3);
+		red_ids.add(red_id_3);
 		
 		red_id_4 = new JTextField();
 		red_id_4.setColumns(10);
 		red_id_4.setBounds(41, 148, 86, 20);
 		red_panel.add(red_id_4);
+		red_ids.add(red_id_4);
 		
 		red_id_5 = new JTextField();
 		red_id_5.setColumns(10);
 		red_id_5.setBounds(41, 173, 86, 20);
 		red_panel.add(red_id_5);
+		red_ids.add(red_id_5);
 		
 		red_id_6 = new JTextField();
 		red_id_6.setColumns(10);
 		red_id_6.setBounds(41, 198, 86, 20);
 		red_panel.add(red_id_6);
+		red_ids.add(red_id_6);
 		
 		red_id_7 = new JTextField();
 		red_id_7.setColumns(10);
 		red_id_7.setBounds(41, 223, 86, 20);
 		red_panel.add(red_id_7);
+		red_ids.add(red_id_7);
 		
 		red_id_8 = new JTextField();
 		red_id_8.setColumns(10);
 		red_id_8.setBounds(41, 248, 86, 20);
 		red_panel.add(red_id_8);
+		red_ids.add(red_id_8);
 		
 		red_id_9 = new JTextField();
 		red_id_9.setColumns(10);
 		red_id_9.setBounds(41, 273, 86, 20);
 		red_panel.add(red_id_9);
+		red_ids.add(red_id_9);
 		
 		red_id_10 = new JTextField();
 		red_id_10.setColumns(10);
 		red_id_10.setBounds(41, 298, 86, 20);
 		red_panel.add(red_id_10);
+		red_ids.add(red_id_10);
 		
 		red_id_11 = new JTextField();
 		red_id_11.setColumns(10);
 		red_id_11.setBounds(41, 323, 86, 20);
 		red_panel.add(red_id_11);
+		red_ids.add(red_id_11);
 		
 		red_id_12 = new JTextField();
 		red_id_12.setColumns(10);
 		red_id_12.setBounds(41, 348, 86, 20);
 		red_panel.add(red_id_12);
+		red_ids.add(red_id_12);
 		
 		red_id_13 = new JTextField();
 		red_id_13.setColumns(10);
 		red_id_13.setBounds(41, 373, 86, 20);
 		red_panel.add(red_id_13);
+		red_ids.add(red_id_13);
 		
 		red_id_14 = new JTextField();
 		red_id_14.setColumns(10);
 		red_id_14.setBounds(41, 398, 86, 20);
 		red_panel.add(red_id_14);
+		red_ids.add(red_id_14);
 		
 		red_id_15 = new JTextField();
 		red_id_15.setColumns(10);
 		red_id_15.setBounds(41, 423, 86, 20);
 		red_panel.add(red_id_15);
+		red_ids.add(red_id_15);
 		
 		JCheckBox red_checkbox_1 = new JCheckBox("1");
 		red_checkbox_1.setBackground(new Color(64, 0, 0));
@@ -358,6 +420,7 @@ public class PlayerEntry
 		green_codename_1.setColumns(20);
 		green_codename_1.setBounds(131, 73, 195, 20);
 		green_panel.add(green_codename_1);
+		green_codenames.add(green_codename_1);
 		
 		label_red_team_1 = new JLabel("GREEN TEAM");
 		label_red_team_1.setFont(new Font("Rockwell", Font.PLAIN, 28));
@@ -368,146 +431,175 @@ public class PlayerEntry
 		green_codename_2.setColumns(20);
 		green_codename_2.setBounds(131, 98, 195, 20);
 		green_panel.add(green_codename_2);
+		green_codenames.add(green_codename_2);
 		
 		green_codename_3 = new JTextField();
 		green_codename_3.setColumns(20);
 		green_codename_3.setBounds(131, 123, 195, 20);
 		green_panel.add(green_codename_3);
+		green_codenames.add(green_codename_3);
 		
 		green_codename_4 = new JTextField();
 		green_codename_4.setColumns(20);
 		green_codename_4.setBounds(131, 148, 195, 20);
 		green_panel.add(green_codename_4);
+		green_codenames.add(green_codename_4);
 		
 		green_codename_5 = new JTextField();
 		green_codename_5.setColumns(20);
 		green_codename_5.setBounds(131, 173, 195, 20);
 		green_panel.add(green_codename_5);
+		green_codenames.add(green_codename_5);
 		
 		green_codename_6 = new JTextField();
 		green_codename_6.setColumns(20);
 		green_codename_6.setBounds(131, 198, 195, 20);
 		green_panel.add(green_codename_6);
+		green_codenames.add(green_codename_6);
 		
 		green_codename_7 = new JTextField();
 		green_codename_7.setColumns(20);
 		green_codename_7.setBounds(131, 223, 195, 20);
 		green_panel.add(green_codename_7);
+		green_codenames.add(green_codename_7);
 		
 		green_codename_8 = new JTextField();
 		green_codename_8.setColumns(20);
 		green_codename_8.setBounds(131, 248, 195, 20);
 		green_panel.add(green_codename_8);
+		green_codenames.add(green_codename_8);
 		
 		green_codename_9 = new JTextField();
 		green_codename_9.setColumns(20);
 		green_codename_9.setBounds(131, 273, 195, 20);
 		green_panel.add(green_codename_9);
+		green_codenames.add(green_codename_9);
 		
 		green_codename_10 = new JTextField();
 		green_codename_10.setColumns(20);
 		green_codename_10.setBounds(131, 298, 195, 20);
 		green_panel.add(green_codename_10);
+		green_codenames.add(green_codename_10);
 		
 		green_codename_11 = new JTextField();
 		green_codename_11.setColumns(20);
 		green_codename_11.setBounds(131, 323, 195, 20);
 		green_panel.add(green_codename_11);
+		green_codenames.add(green_codename_11);
 		
 		green_codename_12 = new JTextField();
 		green_codename_12.setColumns(20);
 		green_codename_12.setBounds(131, 348, 195, 20);
 		green_panel.add(green_codename_12);
+		green_codenames.add(green_codename_12);
 		
 		green_codename_13 = new JTextField();
 		green_codename_13.setColumns(20);
 		green_codename_13.setBounds(131, 373, 195, 20);
 		green_panel.add(green_codename_13);
+		green_codenames.add(green_codename_13);
 		
 		green_codename_14 = new JTextField();
 		green_codename_14.setColumns(20);
 		green_codename_14.setBounds(131, 398, 195, 20);
 		green_panel.add(green_codename_14);
+		green_codenames.add(green_codename_14);
 		
 		green_codename_15 = new JTextField();
 		green_codename_15.setColumns(20);
 		green_codename_15.setBounds(131, 423, 195, 20);
 		green_panel.add(green_codename_15);
+		green_codenames.add(green_codename_15);
 		
 		green_id_1 = new JTextField();
 		green_id_1.setColumns(10);
 		green_id_1.setBounds(41, 73, 86, 20);
 		green_panel.add(green_id_1);
+		green_ids.add(green_id_1);
 		
 		green_id_2 = new JTextField();
 		green_id_2.setColumns(10);
 		green_id_2.setBounds(41, 98, 86, 20);
 		green_panel.add(green_id_2);
+		green_ids.add(green_id_2);
 		
 		green_id_3 = new JTextField();
 		green_id_3.setColumns(10);
 		green_id_3.setBounds(41, 123, 86, 20);
 		green_panel.add(green_id_3);
+		green_ids.add(green_id_3);
 		
 		green_id_4 = new JTextField();
 		green_id_4.setColumns(10);
 		green_id_4.setBounds(41, 148, 86, 20);
 		green_panel.add(green_id_4);
+		green_ids.add(green_id_4);
 		
 		green_id_5 = new JTextField();
 		green_id_5.setColumns(10);
 		green_id_5.setBounds(41, 173, 86, 20);
 		green_panel.add(green_id_5);
+		green_ids.add(green_id_5);
 		
 		green_id_6 = new JTextField();
 		green_id_6.setColumns(10);
 		green_id_6.setBounds(41, 198, 86, 20);
 		green_panel.add(green_id_6);
+		green_ids.add(green_id_6);
 		
 		green_id_7 = new JTextField();
 		green_id_7.setColumns(10);
 		green_id_7.setBounds(41, 223, 86, 20);
 		green_panel.add(green_id_7);
+		green_ids.add(green_id_7);
 		
 		green_id_8 = new JTextField();
 		green_id_8.setColumns(10);
 		green_id_8.setBounds(41, 248, 86, 20);
 		green_panel.add(green_id_8);
+		green_ids.add(green_id_8);
 		
 		green_id_9 = new JTextField();
 		green_id_9.setColumns(10);
 		green_id_9.setBounds(41, 273, 86, 20);
 		green_panel.add(green_id_9);
+		green_ids.add(green_id_9);
 		
 		green_id_10 = new JTextField();
 		green_id_10.setColumns(10);
 		green_id_10.setBounds(41, 298, 86, 20);
 		green_panel.add(green_id_10);
+		green_ids.add(green_id_10);
 		
 		green_id_11 = new JTextField();
 		green_id_11.setColumns(10);
 		green_id_11.setBounds(41, 323, 86, 20);
 		green_panel.add(green_id_11);
+		green_ids.add(green_id_11);
 		
 		green_id_12 = new JTextField();
 		green_id_12.setColumns(10);
 		green_id_12.setBounds(41, 348, 86, 20);
 		green_panel.add(green_id_12);
+		green_ids.add(green_id_12);
 		
 		green_id_13 = new JTextField();
 		green_id_13.setColumns(10);
 		green_id_13.setBounds(41, 373, 86, 20);
 		green_panel.add(green_id_13);
+		green_ids.add(green_id_13);
 		
 		green_id_14 = new JTextField();
 		green_id_14.setColumns(10);
 		green_id_14.setBounds(41, 398, 86, 20);
 		green_panel.add(green_id_14);
+		green_ids.add(green_id_14);
 		
 		green_id_15 = new JTextField();
 		green_id_15.setColumns(10);
 		green_id_15.setBounds(41, 423, 86, 20);
 		green_panel.add(green_id_15);
+		green_ids.add(green_id_15);
 		
 		green_checkbox_1 = new JCheckBox("1");
 		green_checkbox_1.setBackground(new Color(0, 100, 0));
@@ -598,6 +690,7 @@ public class PlayerEntry
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 800);
     }
+
     public void showPlayerEntry()
     {
         frame.setVisible(true);
