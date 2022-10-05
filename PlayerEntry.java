@@ -702,12 +702,7 @@ public class PlayerEntry
 		JTextField id_field = ids_list.get(field);
 		JTextField codename_field = codenames_list.get(field);
 
-		if (presenter.searchDataBaseForPlayer(id_field.getText())) // see if the id is in the database
-		{
-			codename_field.setText(presenter.getCodeName(id_field.getText())); // set the corresponding codename to the codename matching id
-			//codename_field.setEnabled(false); // make the codename field uneditable (move to presenter)
-		}
-		else
+		if (!presenter.searchDataBaseForPlayer(id_field, codename_field)) // see if the id is in the database
 		{
 			codename_field.setText(""); // empty/resets the codename field
 			//codename_field.setEnabled(true); // set the codename field to be editable (move to presenter)
@@ -715,7 +710,7 @@ public class PlayerEntry
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					presenter.addPlayer(id_field.getText(), codename_field.getText()); // add player to database after codename is added
+					presenter.addCodeName(id_field, codename_field); // add player to database after codename is added
 				}
 			});
 		}

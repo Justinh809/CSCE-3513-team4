@@ -75,11 +75,11 @@ public class Model{
     }
 
     // Add the codename and id pair to the database
-    public void addCodeName(String CodeName)
+    public void addCodeName(String id, String CodeName)
     {
         // Write the query that will be used to add the codenmae for the earlier passed in id
         String query = String.format("INSERT INTO player(id, codename) " +
-                                    "Values (%s, '%s')", storedID, CodeName);
+                                    "Values (%s, '%s')", id, CodeName);
         try {
             // Create a statement
             Statement stmt = connection.createStatement();
