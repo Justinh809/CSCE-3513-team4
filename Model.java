@@ -55,7 +55,6 @@ public class Model{
             while (rs.next()) {
                 // get codename and store it as a variable for later
                 String codeName = rs.getString("codename");
-                System.out.println(codeName);
                 storedCodeName = codeName;
                 // return that the search was successful
                 return true;
@@ -75,18 +74,16 @@ public class Model{
     }
 
     // Add the codename and id pair to the database
-    public void addCodeName(String CodeName)
+    public void addCodeName(String id, String CodeName)
     {
         // Write the query that will be used to add the codenmae for the earlier passed in id
         String query = String.format("INSERT INTO player(id, codename) " +
-                                    "Values (%s, '%s')", storedID, CodeName);
+                                    "Values (%s, '%s')", id, CodeName);
         try {
             // Create a statement
             Statement stmt = connection.createStatement();
             // Execute the statement
             stmt.executeUpdate(query);
-            // Print that it was successful
-            System.out.println("Successful");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

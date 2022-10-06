@@ -25,84 +25,84 @@ public class PlayerEntry
 	ArrayList<JTextField> ids_list = new ArrayList<JTextField>();
 	ArrayList<JTextField> codenames_list = new ArrayList<JTextField>();
 
-    private JFrame frame;
-	private JTextField red_codename_1;
-	private JTextField red_codename_2;
-	private JTextField red_codename_3;
-	private JTextField red_codename_4;
-	private JTextField red_codename_5;
-	private JTextField red_codename_6;
-	private JTextField red_codename_7;
-	private JTextField red_codename_8;
-	private JTextField red_codename_9;
-	private JTextField red_codename_10;
-	private JTextField red_codename_11;
-	private JTextField red_codename_12;
-	private JTextField red_codename_13;
-	private JTextField red_codename_14;
-	private JTextField red_codename_15;
-	private JTextField red_id_1;
-	private JTextField red_id_2;
-	private JTextField red_id_3;
-	private JTextField red_id_4;
-	private JTextField red_id_5;
-	private JTextField red_id_6;
-	private JTextField red_id_7;
-	private JTextField red_id_8;
-	private JTextField red_id_9;
-	private JTextField red_id_10;
-	private JTextField red_id_11;
-	private JTextField red_id_12;
-	private JTextField red_id_13;
-	private JTextField red_id_14;
-	private JTextField red_id_15;
-	private JPanel green_panel;
-	private JTextField green_codename_1;
-	private JLabel label_red_team_1;
-	private JTextField green_codename_2;
-	private JTextField green_codename_3;
-	private JTextField green_codename_4;
-	private JTextField green_codename_5;
-	private JTextField green_codename_6;
-	private JTextField green_codename_7;
-	private JTextField green_codename_8;
-	private JTextField green_codename_9;
-	private JTextField green_codename_10;
-	private JTextField green_codename_11;
-	private JTextField green_codename_12;
-	private JTextField green_codename_13;
-	private JTextField green_codename_14;
-	private JTextField green_codename_15;
-	private JTextField green_id_1;
-	private JTextField green_id_2;
-	private JTextField green_id_3;
-	private JTextField green_id_4;
-	private JTextField green_id_5;
-	private JTextField green_id_6;
-	private JTextField green_id_7;
-	private JTextField green_id_8;
-	private JTextField green_id_9;
-	private JTextField green_id_10;
-	private JTextField green_id_11;
-	private JTextField green_id_12;
-	private JTextField green_id_13;
-	private JTextField green_id_14;
-	private JTextField green_id_15;
-	private JCheckBox green_checkbox_1;
-	private JCheckBox green_checkbox_2;
-	private JCheckBox green_checkbox_3;
-	private JCheckBox green_checkbox_4;
-	private JCheckBox green_checkbox_5;
-	private JCheckBox green_checkbox_6;
-	private JCheckBox green_checkbox_7;
-	private JCheckBox green_checkbox_8;
-	private JCheckBox green_checkbox_9;
-	private JCheckBox green_checkbox_10;
-	private JCheckBox green_checkbox_11;
-	private JCheckBox green_checkbox_12;
-	private JCheckBox green_checkbox_13;
-	private JCheckBox green_checkbox_14;
-	private JCheckBox green_checkbox_15;
+    JFrame frame;
+	JTextField red_codename_1;
+	JTextField red_codename_2;
+	JTextField red_codename_3;
+	JTextField red_codename_4;
+	JTextField red_codename_5;
+	JTextField red_codename_6;
+	JTextField red_codename_7;
+	JTextField red_codename_8;
+	JTextField red_codename_9;
+	JTextField red_codename_10;
+	JTextField red_codename_11;
+	JTextField red_codename_12;
+	JTextField red_codename_13;
+	JTextField red_codename_14;
+	JTextField red_codename_15;
+	JTextField red_id_1;
+	JTextField red_id_2;
+	JTextField red_id_3;
+	JTextField red_id_4;
+	JTextField red_id_5;
+	JTextField red_id_6;
+	JTextField red_id_7;
+	JTextField red_id_8;
+	JTextField red_id_9;
+	JTextField red_id_10;
+	JTextField red_id_11;
+	JTextField red_id_12;
+	JTextField red_id_13;
+	JTextField red_id_14;
+	JTextField red_id_15;
+	JPanel green_panel;
+	JTextField green_codename_1;
+	JLabel label_red_team_1;
+	JTextField green_codename_2;
+	JTextField green_codename_3;
+	JTextField green_codename_4;
+	JTextField green_codename_5;
+	JTextField green_codename_6;
+	JTextField green_codename_7;
+	JTextField green_codename_8;
+	JTextField green_codename_9;
+	JTextField green_codename_10;
+	JTextField green_codename_11;
+	JTextField green_codename_12;
+	JTextField green_codename_13;
+	JTextField green_codename_14;
+	JTextField green_codename_15;
+	JTextField green_id_1;
+	JTextField green_id_2;
+	JTextField green_id_3;
+	JTextField green_id_4;
+	JTextField green_id_5;
+	JTextField green_id_6;
+	JTextField green_id_7;
+	JTextField green_id_8;
+	JTextField green_id_9;
+	JTextField green_id_10;
+	JTextField green_id_11;
+	JTextField green_id_12;
+	JTextField green_id_13;
+	JTextField green_id_14;
+	JTextField green_id_15;
+	JCheckBox green_checkbox_1;
+	JCheckBox green_checkbox_2;
+	JCheckBox green_checkbox_3;
+	JCheckBox green_checkbox_4;
+	JCheckBox green_checkbox_5;
+	JCheckBox green_checkbox_6;
+	JCheckBox green_checkbox_7;
+	JCheckBox green_checkbox_8;
+	JCheckBox green_checkbox_9;
+	JCheckBox green_checkbox_10;
+	JCheckBox green_checkbox_11;
+	JCheckBox green_checkbox_12;
+	JCheckBox green_checkbox_13;
+	JCheckBox green_checkbox_14;
+	JCheckBox green_checkbox_15;
 
     public PlayerEntry(Presenter p)
     {
@@ -702,22 +702,27 @@ public class PlayerEntry
 		JTextField id_field = ids_list.get(field);
 		JTextField codename_field = codenames_list.get(field);
 
-		if (presenter.searchDataBaseForPlayer(id_field.getText())) // see if the id is in the database
-		{
-			codename_field.setText(presenter.getCodeName(id_field.getText())); // set the corresponding codename to the codename matching id
-			//codename_field.setEnabled(false); // make the codename field uneditable (move to presenter)
-		}
-		else
+		if (presenter.searchDataBaseForPlayer(id_field, codename_field) == 1) // see if the id is in the database
 		{
 			codename_field.setText(""); // empty/resets the codename field
-			//codename_field.setEnabled(true); // set the codename field to be editable (move to presenter)
+			//DISPLAY A Prompt to enter a CodeName
 			codename_field.addActionListener(new ActionListener() // new listener for the codename field for the corresponding ID
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					presenter.addPlayer(id_field.getText(), codename_field.getText()); // add player to database after codename is added
+					// add player to database after codename is typed
+					if(!presenter.addCodeName(id_field, codename_field))
+					{
+						//Display prompt to enter a valid codename
+						System.out.println("Codename input needs to be only characters");
+					} 
 				}
 			});
+		}
+		else if(presenter.searchDataBaseForPlayer(id_field, codename_field) == 2)
+		{
+			//DISPLAY THAT THE ID NEEDS TO BE NUMERIC
+			System.out.println("ID Input needs to be an int");
 		}
 	}
 
