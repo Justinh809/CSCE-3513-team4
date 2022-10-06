@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -25,7 +26,8 @@ public class PlayerEntry
 	ArrayList<JTextField> ids_list = new ArrayList<JTextField>();
 	ArrayList<JTextField> codenames_list = new ArrayList<JTextField>();
 
-    JFrame frame;
+    	JFrame frame;
+	JLabel message_label;
 	JTextField red_codename_1;
 	JTextField red_codename_2;
 	JTextField red_codename_3;
@@ -119,6 +121,13 @@ public class PlayerEntry
 		frame.getContentPane().add(red_panel);
 		red_panel.setLayout(null);
 		
+		message_label = new JLabel("");
+		message_label.setBounds(57, 588, 670, 24); //ADJUST BOUNDS OF LABEL HERE.
+		message_label.setFont(new Font("Rockwell", Font.PLAIN, 20));
+		message_label.setHorizontalAlignment(SwingConstants.CENTER);
+		message_label.setForeground(Color.RED);
+		frame.getContentPane().add(message_label);
+
 		red_codename_1 = new JTextField();
 		red_codename_1.setBounds(131, 73, 195, 20);
 		red_panel.add(red_codename_1);
@@ -706,6 +715,7 @@ public class PlayerEntry
 		{
 			codename_field.setText(""); // empty/resets the codename field
 			//DISPLAY A Prompt to enter a CodeName
+			showMessage("Enter a codename.");
 			codename_field.addActionListener(new ActionListener() // new listener for the codename field for the corresponding ID
 			{
 				public void actionPerformed(ActionEvent e)
@@ -714,7 +724,7 @@ public class PlayerEntry
 					if(!presenter.addCodeName(id_field, codename_field))
 					{
 						//Display prompt to enter a valid codename
-						System.out.println("Codename input needs to be only characters");
+						showMessage("Codename input needs to be only characters.");
 					} 
 				}
 			});
@@ -722,8 +732,20 @@ public class PlayerEntry
 		else if(presenter.searchDataBaseForPlayer(id_field, codename_field) == 2)
 		{
 			//DISPLAY THAT THE ID NEEDS TO BE NUMERIC
-			System.out.println("ID Input needs to be an int");
+			showMessage("ID Input needs to be an int.");
 		}
+	}
+
+	public void showMessage(String message)
+	{
+		message_label.setText(message);
+		try {
+			Thread.sleep(7000);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("ERROR: Timer in showMessage()");
+		}
+		message_label.setText("");
 	}
 
     public void showPlayerEntry()
