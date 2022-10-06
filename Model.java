@@ -49,7 +49,7 @@ public class Model{
         storedID = id;
         try {
             // create a statement
-            Statement stmt = connection.createStatement(); //Erroring here
+            Statement stmt = connection.createStatement();
             // execute statement and gather a result set
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {

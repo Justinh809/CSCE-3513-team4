@@ -705,11 +705,17 @@ public class PlayerEntry
 		if (presenter.searchDataBaseForPlayer(id_field, codename_field) == 1) // see if the id is in the database
 		{
 			codename_field.setText(""); // empty/resets the codename field
+			//DISPLAY A Prompt to enter a CodeName
 			codename_field.addActionListener(new ActionListener() // new listener for the codename field for the corresponding ID
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					presenter.addCodeName(id_field, codename_field); // add player to database after codename is added
+					// add player to database after codename is typed
+					if(!presenter.addCodeName(id_field, codename_field))
+					{
+						//Display prompt to enter a valid codename
+						System.out.println("Codename input needs to be only characters");
+					} 
 				}
 			});
 		}

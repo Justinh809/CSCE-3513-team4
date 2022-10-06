@@ -79,10 +79,19 @@ public class Presenter {
 
     }
 
-    void addCodeName(JTextField id_field, JTextField codename_field)
+    public Boolean addCodeName(JTextField id_field, JTextField codename_field)
     {
-        model.addCodeName(id_field.getText(), codename_field.getText());
-        codename_field.setEnabled(false); // make the codename field uneditable
+        if(codename_field.getText().matches("^[a-zA-Z]+$"))
+        {
+            model.addCodeName(id_field.getText(), codename_field.getText());
+            codename_field.setEnabled(false); // make the codename field uneditable
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     void kill() { // exit game button or something can call this
