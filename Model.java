@@ -49,7 +49,7 @@ public class Model{
         storedID = id;
         try {
             // create a statement
-            Statement stmt = connection.createStatement();
+            Statement stmt = connection.createStatement(); //Erroring here
             // execute statement and gather a result set
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
@@ -86,7 +86,6 @@ public class Model{
             // Execute the statement
             stmt.executeUpdate(query);
             // Print that it was successful
-            System.out.println("Successful");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

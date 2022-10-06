@@ -31,7 +31,7 @@ public class LaserTag {
         // database without UI
         // presenter.searchDataBaseForPlayer(sc.nextLine()); // Testing Purposes
         // searching through databse without UI
-        presenter.startGame();
+        // presenter.startGame();
         while (true) {
             presenter.update(); // update anything that needs to be updated
 

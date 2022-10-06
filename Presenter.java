@@ -1,4 +1,4 @@
-import java.sql.SQLException;
+import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
 
 import javax.swing.JTextField;
@@ -57,8 +57,7 @@ public class Presenter {
     }
 
     public Boolean searchDataBaseForPlayer(JTextField id_field, JTextField codename_field) {
-        // if codename exists at ID a, return true
-        System.out.println("a");
+        // if codename exists at the input ID, return true
         if(model.Search(id_field.getText())) {
             codename_field.setText(model.getCodeName()); // set the corresponding codename to the codename matching id
             codename_field.setEnabled(false); // make the codename field uneditable
@@ -74,6 +73,7 @@ public class Presenter {
     void addCodeName(JTextField id_field, JTextField codename_field)
     {
         model.addCodeName(id_field.getText(), codename_field.getText());
+        codename_field.setEnabled(false); // make the codename field uneditable
     }
 
     void kill() { // exit game button or something can call this
