@@ -56,17 +56,26 @@ public class Presenter {
         // doesn't look like anything needs to be constantly updated since
     }
 
-    public Boolean searchDataBaseForPlayer(JTextField id_field, JTextField codename_field) {
-        // if codename exists at the input ID, return true
-        if(model.Search(id_field.getText())) {
-            codename_field.setText(model.getCodeName()); // set the corresponding codename to the codename matching id
-            codename_field.setEnabled(false); // make the codename field uneditable
-            return true;
+    public int searchDataBaseForPlayer(JTextField id_field, JTextField codename_field) {
+        if(id_field.getText().matches("\\d+")){
+            // if codename exists at the input ID, return true
+            if(model.Search(id_field.getText())) {
+                codename_field.setText(model.getCodeName()); // set the corresponding codename to the codename matching id
+                codename_field.setEnabled(false); // make the codename field uneditable
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
         }
         else
         {
-            return false;
+            return 2;
         }
+        
+        
+        
 
     }
 

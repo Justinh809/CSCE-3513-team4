@@ -702,7 +702,7 @@ public class PlayerEntry
 		JTextField id_field = ids_list.get(field);
 		JTextField codename_field = codenames_list.get(field);
 
-		if (!presenter.searchDataBaseForPlayer(id_field, codename_field)) // see if the id is in the database
+		if (presenter.searchDataBaseForPlayer(id_field, codename_field) == 1) // see if the id is in the database
 		{
 			codename_field.setText(""); // empty/resets the codename field
 			codename_field.addActionListener(new ActionListener() // new listener for the codename field for the corresponding ID
@@ -712,6 +712,11 @@ public class PlayerEntry
 					presenter.addCodeName(id_field, codename_field); // add player to database after codename is added
 				}
 			});
+		}
+		else if(presenter.searchDataBaseForPlayer(id_field, codename_field) == 2)
+		{
+			//DISPLAY THAT THE ID NEEDS TO BE NUMERIC
+			System.out.println("ID Input needs to be an int");
 		}
 	}
 

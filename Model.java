@@ -55,7 +55,6 @@ public class Model{
             while (rs.next()) {
                 // get codename and store it as a variable for later
                 String codeName = rs.getString("codename");
-                System.out.println(codeName);
                 storedCodeName = codeName;
                 // return that the search was successful
                 return true;
@@ -85,7 +84,6 @@ public class Model{
             Statement stmt = connection.createStatement();
             // Execute the statement
             stmt.executeUpdate(query);
-            // Print that it was successful
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
