@@ -27,11 +27,6 @@ public class LaserTag {
 
     public void run() {
         presenter.startApp();
-        // System.out.println("Enter ID\n"); //Testing purposes searching through
-        // database without UI
-        // presenter.searchDataBaseForPlayer(sc.nextLine()); // Testing Purposes
-        // searching through databse without UI
-        // presenter.startGame();
         while (true) {
             presenter.update(); // update anything that needs to be updated
 

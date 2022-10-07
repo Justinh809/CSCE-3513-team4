@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author postgresqltutorial.com
@@ -11,11 +13,13 @@ public class Model{
     private final String password = "66b9145075195cf7e932d1c515dc3b91b58bd987ec2649b7512fd58e4591c0d6";
     Connection connection;
     String storedCodeName, storedID;
+    List<String> idList;
 
     // Constructor for the model class
     public Model()
     {
         connection = connect();
+        idList = new ArrayList<>();
     }
 
     /**
@@ -88,5 +92,11 @@ public class Model{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    // Add an id to the idList
+    public void addIDtoList(String id)
+    {
+        idList.add(id);
     }
 }

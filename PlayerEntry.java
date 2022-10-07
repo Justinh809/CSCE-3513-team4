@@ -26,7 +26,7 @@ public class PlayerEntry
 	ArrayList<JTextField> ids_list = new ArrayList<JTextField>();
 	ArrayList<JTextField> codenames_list = new ArrayList<JTextField>();
 
-    	JFrame frame;
+    JFrame frame;
 	JLabel message_label;
 	JTextField red_codename_1;
 	JTextField red_codename_2;
@@ -110,7 +110,7 @@ public class PlayerEntry
     {
 		presenter = p; // needed this declared for the class for use outside the constructor (idListener)
 
-        	frame = new JFrame();
+        frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Entry Terminal");
@@ -697,6 +697,7 @@ public class PlayerEntry
 		button_start_game.setBackground(Color.BLACK);
 		button_start_game.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				presenter.startGame();
 			}
 		});
 		button_start_game.setBounds(344, 660, 98, 90);
@@ -711,9 +712,14 @@ public class PlayerEntry
 		JTextField id_field = ids_list.get(field);
 		JTextField codename_field = codenames_list.get(field);
 
-		if (presenter.searchDataBaseForPlayer(id_field, codename_field) == 1) // see if the id is in the database
+		// Call the presenter to search for the id in the database
+		int result = presenter.searchDataBaseForPlayer(id_field, codename_field);
+
+		// Codename needed for this id
+		if (result == 1)
 		{
 			codename_field.setText(""); // empty/resets the codename field
+			showMessage("");
 			//DISPLAY A Prompt to enter a CodeName
 			showMessage("Enter a codename.");
 			codename_field.addActionListener(new ActionListener() // new listener for the codename field for the corresponding ID
@@ -725,27 +731,31 @@ public class PlayerEntry
 					{
 						//Display prompt to enter a valid codename
 						showMessage("Codename input needs to be only characters.");
-					} 
+					}
+					else
+					{
+						showMessage("");
+					}
 				}
 			});
 		}
-		else if(presenter.searchDataBaseForPlayer(id_field, codename_field) == 2)
+		else if(result == 2) //ID is already in use
 		{
-			//DISPLAY THAT THE ID NEEDS TO BE NUMERIC
+			showMessage("ID Input is already in use, choose another");
+		}
+		else if(result == 3) //ID input was invalid
+		{
 			showMessage("ID Input needs to be an int.");
+		}
+		else if(result == 0) //ID was valid and codename existed in database already
+		{
+			showMessage("");
 		}
 	}
 
-	public void showMessage(String message)
+	public void showMessage(String message) //Sets the display box with a message to communicate with the user
 	{
 		message_label.setText(message);
-		try {
-			Thread.sleep(7000);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("ERROR: Timer in showMessage()");
-		}
-		message_label.setText("");
 	}
 
     public void showPlayerEntry()
