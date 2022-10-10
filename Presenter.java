@@ -47,50 +47,39 @@ public class Presenter {
     }
 
     public int searchDataBaseForPlayer(JTextField id_field, JTextField codename_field) {
-        //Checks if the id is only digits
-        if(id_field.getText().matches("\\d+")){
-            if(!model.idList.contains(id_field.getText())) //Checks if the id is already in use
+        // Checks if the id is only digits
+        if (id_field.getText().matches("\\d+")) {
+            if (!model.idList.contains(id_field.getText())) // Checks if the id is already in use
             {
                 model.idList.add(id_field.getText());
+                id_field.setEnabled(false);
                 // if codename exists at the input ID, return true
-                if(model.Search(id_field.getText())) {
-                    codename_field.setText(model.getCodeName()); // set the corresponding codename to the codename matching id
+                if (model.Search(id_field.getText())) {
+                    codename_field.setText(model.getCodeName()); // set the corresponding codename to the codename
+                                                                 // matching id
                     codename_field.setEnabled(false); // make the codename field uneditable
                     return 0;
+                } else {
+                    return 1; // Codename not present, initiates request for a new one from user
                 }
-                else
-                {
-                    return 1; //Codename not present, initiates request for a new one from user
-                }
+            } else {
+                return 2; // ID is already in use. Prompts for a new entry
             }
-            else
-            {
-                return 2; //ID is already in use. Prompts for a new entry
-            }
+        } else {
+            return 3; // ID is a non integer. Prompts for a new entry
         }
-        else
-        {
-            return 3; //ID is a non integer. Prompts for a new entry
-        }
-        
-        
-        
 
     }
 
-    public Boolean addCodeName(JTextField id_field, JTextField codename_field)
-    {
-        if(codename_field.getText().matches("^[a-zA-Z]+$"))
-        {
+    public Boolean addCodeName(JTextField id_field, JTextField codename_field) {
+        if (codename_field.getText().matches("^[a-zA-Z]+$")) {
             model.addCodeName(id_field.getText(), codename_field.getText());
             codename_field.setEnabled(false); // make the codename field uneditable
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
-        
+
     }
 
     void kill() { // exit game button or something can call this
