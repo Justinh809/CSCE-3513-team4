@@ -1,7 +1,7 @@
 # CSCE-3513-team4
 University of Arkansas CSCE 3513 Team 4. Laser tag software!!
 
-Dependencies Required to Run: Java
+Dependencies Required to Run: Java 8 or higher
 
 Download Repository via Github or as .zip and extract.
 
