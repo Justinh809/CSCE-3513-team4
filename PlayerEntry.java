@@ -7,10 +7,9 @@
 */
 
 import javax.swing.JFrame;
-import java.awt.Color;
+import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
@@ -114,7 +113,7 @@ public class PlayerEntry
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Entry Terminal");
-		
+
 		JPanel red_panel = new JPanel();
 		red_panel.setBackground(new Color(64, 0, 0));
 		red_panel.setBounds(57, 91, 335, 463);
@@ -695,6 +694,7 @@ public class PlayerEntry
 		button_start_game.setForeground(new Color(0, 100, 0));
 		button_start_game.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button_start_game.setBackground(Color.BLACK);
+
 		button_start_game.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				presenter.startGame();
@@ -705,6 +705,8 @@ public class PlayerEntry
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 800);
+		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation((size.width-frame.getWidth())  / 2, (size.height-frame.getHeight()) / 2);
     }
 
 	public void idListener(int field)

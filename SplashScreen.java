@@ -9,7 +9,7 @@
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Color;
+import java.awt.*;
 
 public class SplashScreen extends JFrame
 {
@@ -24,6 +24,11 @@ public class SplashScreen extends JFrame
         ImageIcon splash_logo = new ImageIcon("SplashScreenLogo_Resize.png"); // load logo image from file
         JLabel label = new JLabel(splash_logo); // create label to add logo to
         this.getContentPane().add(label); // add label to the content pane
+
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation((size.width-getWidth())  / 2, (size.height-getHeight()) / 2);
+
+
     }
 
     public void showSplash() //Shows the splash screen
