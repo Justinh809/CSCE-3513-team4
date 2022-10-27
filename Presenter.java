@@ -7,6 +7,7 @@ public class Presenter {
     Model model; // create a model inside presenter
     SplashScreen splash; // create a splash screen inside presenter
     PlayerEntry playerEntry;
+    GameAction gameAction;
     
 
     // constructor will initialize the model and each view
@@ -35,6 +36,7 @@ public class Presenter {
         playerEntry.buildListForPresenter();
         addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
+        gameAction.showGameAction();
         System.out.println("Red Team: ");
         System.out.println(model.acitveRedPlayers);
         System.out.println("Green Team: ");
@@ -42,11 +44,10 @@ public class Presenter {
         try {
             
             model.connection.close();
-            System.exit(1);
+            //System.exit(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // gameScreen.show()
         // model.runGame()
     }
 

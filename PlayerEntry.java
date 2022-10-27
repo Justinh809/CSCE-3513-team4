@@ -701,7 +701,6 @@ public class PlayerEntry
 
 		button_start_game.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Hello");
 				presenter.startGame();
 			}
 		});
