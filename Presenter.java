@@ -16,7 +16,7 @@ public class Presenter {
         splash = new SplashScreen(); // load splash screen
         model = new Model(); // load model
         playerEntry = new PlayerEntry(this); // Load player entry screen with this as paramater
-
+        gameAction = new GameAction(this); // pass in presenter into game action
     }
 
     public void startApp() {
