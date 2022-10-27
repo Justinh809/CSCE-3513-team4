@@ -64,6 +64,8 @@ public class GameAction
         frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Game Screen");
+
 		
 		JPanel timer_panel = new JPanel();
 		timer_panel.setBackground(Color.BLACK);
@@ -323,6 +325,7 @@ public class GameAction
 		frame.setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 1280, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(800, 800);
     }
 
     public void initializePlayersOnStart() // add what players start on the leaderboard before game starts (SPRINT 3)
