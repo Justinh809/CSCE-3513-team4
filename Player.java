@@ -35,7 +35,16 @@ public class Player {
     @Override
     public String toString()
     {
-        return codename;
+        String team = "";
+        if(redTeam)
+        {
+            team = "red";
+        }
+        else
+        {
+            team = "green";
+        }
+        return "ID: "+ id + " Codename: " + codename + " Team: " + team;
     }
 
 }

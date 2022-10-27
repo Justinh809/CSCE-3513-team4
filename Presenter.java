@@ -36,11 +36,11 @@ public class Presenter {
         playerEntry.buildListForPresenter();
         addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
-        gameAction.showGameAction();
         System.out.println("Red Team: ");
         System.out.println(model.acitveRedPlayers);
         System.out.println("Green Team: ");
         System.out.println(model.acitveGreenPlayers);
+        gameAction.showGameAction();
         try {
             
             model.connection.close();
