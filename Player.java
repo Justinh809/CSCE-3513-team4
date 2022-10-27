@@ -4,14 +4,6 @@ public class Player {
     private int score;
     private boolean redTeam; // red team is true green is false
 
-    // this constructor probably isn't necessary and might even cause confusion
-    Player() {
-        id = -1;
-        codename = "NoName";
-        redTeam = true;
-        score = 0;
-    }
-
     Player(int givenId, String givenCodename, boolean givenTeam) {
         codename = givenCodename;
         id = givenId;

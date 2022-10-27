@@ -14,6 +14,8 @@ public class Model{
     Connection connection;
     String storedCodeName, storedID;
     List<String> idList;
+    List<Player> acitveRedPlayers;
+    List<Player> acitveGreenPlayers;
 
     // Constructor for the model class
     public Model()
@@ -98,5 +100,17 @@ public class Model{
     public void addIDtoList(String id)
     {
         idList.add(id);
+    }
+
+    // Add player to list of correct team, true is red, false is green
+    public void addPlayer(Player player, boolean redTeam)
+    {
+        if(redTeam)
+        {
+            acitveRedPlayers.add(player);
+        }
+        else {
+            acitveGreenPlayers.add(player);
+        }
     }
 }

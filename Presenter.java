@@ -1,6 +1,6 @@
 import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
-
+import java.util.List;
 import javax.swing.JTextField;
 
 public class Presenter {
@@ -80,6 +80,19 @@ public class Presenter {
             return false;
         }
 
+    }
+
+    public Player createPlayer(int id, String codename, boolean redTeam)
+    {
+        return Player(id, codename, redTeam);
+    }
+
+    void addPlayersToList(List<JTextField> list)
+    {
+        for(int i = 0; i < list.size(); i++)
+        {
+            model.addPlayer(null, false);
+        }
     }
 
     void kill() { // exit game button or something can call this
