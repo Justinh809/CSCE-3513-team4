@@ -64,10 +64,10 @@ public class GameAction
     JLabel green_player_4_score;
     JLabel green_player_5_score;
     
-	ArrayList<JLabel> red_player_labels;
-	ArrayList<JLabel> green_player_labels;
-	ArrayList<JLabel> red_score_labels;
-	ArrayList<JLabel> green_score_labels;
+	ArrayList<JLabel> red_player_labels = new ArrayList<JLabel>();
+	ArrayList<JLabel> green_player_labels = new ArrayList<JLabel>();
+	ArrayList<JLabel> red_score_labels = new ArrayList<JLabel>();
+	ArrayList<JLabel> green_score_labels = new ArrayList<JLabel>();
 
     public GameAction(Presenter p)
     {
