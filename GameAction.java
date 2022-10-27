@@ -19,6 +19,12 @@ public class GameAction
 
     JFrame frame;
     Presenter presenter;
+	JPanel timer_panel;
+	JPanel live_action_panel;
+	JPanel red_score_panel;
+	JPanel green_score_panel;
+
+
 
     JLabel timer_label;
     JLabel game_action_1;
@@ -33,6 +39,7 @@ public class GameAction
     JLabel game_action_10;
 
     JLabel red_team_score;
+	JLabel red_team_label;
     JLabel red_player_1;
     JLabel red_player_2;
     JLabel red_player_3;
@@ -45,6 +52,7 @@ public class GameAction
     JLabel red_player_5_score;
 
     JLabel green_team_score;
+	JLabel green_team_label;
     JLabel green_player_1;
     JLabel green_player_2;
     JLabel green_player_3;
@@ -64,10 +72,9 @@ public class GameAction
         frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
-		frame.setTitle("Game Screen");
-
+        frame.setTitle("Game Action");
 		
-		JPanel timer_panel = new JPanel();
+		timer_panel = new JPanel();
 		timer_panel.setBackground(Color.BLACK);
 		timer_panel.setBounds(0, 612, 1264, 70);
 		frame.getContentPane().add(timer_panel);
@@ -77,7 +84,7 @@ public class GameAction
 		timer_label.setFont(new Font("Rockwell", Font.PLAIN, 50));
 		timer_panel.add(timer_label);
 		
-		JPanel live_action_panel = new JPanel();
+		live_action_panel = new JPanel();
 		live_action_panel.setBackground(new Color(10, 10, 44));
 		live_action_panel.setBounds(0, 306, 1264, 306);
 		frame.getContentPane().add(live_action_panel);
@@ -153,13 +160,13 @@ public class GameAction
 		game_action_10.setBounds(10, 262, 1244, 27);
 		live_action_panel.add(game_action_10);
 		
-		JPanel red_score_panel = new JPanel();
+		red_score_panel = new JPanel();
 		red_score_panel.setBackground(Color.BLACK);
 		red_score_panel.setBounds(0, 0, 632, 306);
 		frame.getContentPane().add(red_score_panel);
 		red_score_panel.setLayout(null);
 		
-		JLabel red_team_label = new JLabel("RED TEAM");
+		red_team_label = new JLabel("RED TEAM");
 		red_team_label.setForeground(Color.RED);
 		red_team_label.setBackground(Color.BLACK);
 		red_team_label.setBounds(247, 5, 138, 30);
@@ -238,13 +245,13 @@ public class GameAction
 		red_team_score.setBounds(514, 258, 108, 37);
 		red_score_panel.add(red_team_score);
 		
-		JPanel green_score_panel = new JPanel();
+		green_score_panel = new JPanel();
 		green_score_panel.setLayout(null);
 		green_score_panel.setBackground(Color.BLACK);
 		green_score_panel.setBounds(632, 0, 632, 306);
 		frame.getContentPane().add(green_score_panel);
 		
-		JLabel green_team_label = new JLabel("GREEN TEAM");
+		green_team_label = new JLabel("GREEN TEAM");
 		green_team_label.setForeground(new Color(0, 128, 0));
 		green_team_label.setFont(new Font("Rockwell", Font.BOLD, 25));
 		green_team_label.setBounds(247, 5, 205, 30);
