@@ -741,7 +741,7 @@ public class PlayerEntry
 					}
 					else
 					{
-						showMessage("1");
+						showMessage("");
 						fieldsInUse.add(field);
 					}
 				}
@@ -757,7 +757,7 @@ public class PlayerEntry
 		}
 		else if(result == 0) //ID was valid and codename existed in database already
 		{
-			showMessage("0");
+			showMessage("");
 			fieldsInUse.add(field);
 		}
 	}
@@ -781,9 +781,7 @@ public class PlayerEntry
 				temp.add("green");
 			}
 			toBePassed.add(temp);
-			System.out.println(temp);
 		}
-		System.out.println(toBePassed);
 	}
 
 	public void showMessage(String message) //Sets the display box with a message to communicate with the user
