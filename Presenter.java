@@ -35,9 +35,9 @@ public class Presenter {
         playerEntry.buildListForPresenter();
         addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
-        System.out.println("Red Team");
+        System.out.println("Red Team: ");
         System.out.println(model.acitveRedPlayers);
-        System.out.println("Green Team");
+        System.out.println("Green Team: ");
         System.out.println(model.acitveGreenPlayers);
         try {
             
