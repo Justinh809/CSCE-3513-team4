@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class PlayerEntry
 {
@@ -24,6 +26,8 @@ public class PlayerEntry
 
 	ArrayList<JTextField> ids_list = new ArrayList<JTextField>();
 	ArrayList<JTextField> codenames_list = new ArrayList<JTextField>();
+	List<Integer> fieldsInUse = new ArrayList<Integer>();
+	List<List<String>> toBePassed = new ArrayList<List<String>>();
 
     JFrame frame;
 	JLabel message_label;
@@ -697,6 +701,7 @@ public class PlayerEntry
 
 		button_start_game.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hello");
 				presenter.startGame();
 			}
 		});
@@ -736,7 +741,8 @@ public class PlayerEntry
 					}
 					else
 					{
-						showMessage("");
+						showMessage("1");
+						fieldsInUse.add(field);
 					}
 				}
 			});
@@ -751,8 +757,33 @@ public class PlayerEntry
 		}
 		else if(result == 0) //ID was valid and codename existed in database already
 		{
-			showMessage("");
+			showMessage("0");
+			fieldsInUse.add(field);
 		}
+	}
+
+	public void buildListForPresenter()
+	{
+		for(int i = 0; i < fieldsInUse.size(); i++)
+		{
+			JTextField id_field = ids_list.get(fieldsInUse.get(i));
+			JTextField codename_field = codenames_list.get(fieldsInUse.get(i));
+			List<String> temp = new ArrayList<String>();
+
+			temp.add(id_field.getText());
+			temp.add(codename_field.getText());
+			if(fieldsInUse.get(i) <= 14)
+			{
+				temp.add("red");
+			}
+			else
+			{
+				temp.add("green");
+			}
+			toBePassed.add(temp);
+			System.out.println(temp);
+		}
+		System.out.println(toBePassed);
 	}
 
 	public void showMessage(String message) //Sets the display box with a message to communicate with the user

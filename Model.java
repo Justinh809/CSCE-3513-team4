@@ -14,8 +14,8 @@ public class Model{
     Connection connection;
     String storedCodeName, storedID;
     List<String> idList;
-    List<Player> acitveRedPlayers;
-    List<Player> acitveGreenPlayers;
+    List<Player> acitveRedPlayers = new ArrayList<Player>();
+    List<Player> acitveGreenPlayers = new ArrayList<Player>();
 
     // Constructor for the model class
     public Model()

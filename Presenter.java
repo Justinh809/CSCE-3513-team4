@@ -7,6 +7,7 @@ public class Presenter {
     Model model; // create a model inside presenter
     SplashScreen splash; // create a splash screen inside presenter
     PlayerEntry playerEntry;
+    
 
     // constructor will initialize the model and each view
     Presenter() {
@@ -31,8 +32,15 @@ public class Presenter {
     }
 
     public void startGame() { // after the players are entered and the start button is pressed
+        playerEntry.buildListForPresenter();
+        addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
+        System.out.println("Red Team");
+        System.out.println(model.acitveRedPlayers);
+        System.out.println("Green Team");
+        System.out.println(model.acitveGreenPlayers);
         try {
+            
             model.connection.close();
             System.exit(1);
         } catch (SQLException e) {
@@ -84,14 +92,25 @@ public class Presenter {
 
     public Player createPlayer(int id, String codename, boolean redTeam)
     {
-        return Player(id, codename, redTeam);
+        Player p = new Player(id, codename, redTeam);
+        return p;
     }
 
-    void addPlayersToList(List<JTextField> list)
+    void addPlayersToList(List<List<String>> list)
     {
+        boolean redTeam;
         for(int i = 0; i < list.size(); i++)
         {
-            model.addPlayer(null, false);
+            if(list.get(i).get(2) == "red")
+            {
+                redTeam = true;
+            }
+            else
+            {
+                redTeam = false;
+            }
+            Player p = createPlayer(Integer.parseInt(list.get(i).get(0)), list.get(i).get(1), redTeam);
+            model.addPlayer(p, redTeam);
         }
     }
 

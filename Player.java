@@ -32,4 +32,10 @@ public class Player {
         return redTeam;
     }
 
+    @Override
+    public String toString()
+    {
+        return codename;
+    }
+
 }
