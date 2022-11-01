@@ -69,6 +69,7 @@ public class GameAction
     {
         presenter = p;
 
+		System.out.println("a");
         frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
@@ -332,6 +333,7 @@ public class GameAction
 		frame.setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 1280, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(800, 800);
     }
 
     public void initializePlayersOnStart() // add what players start on the leaderboard before game starts (SPRINT 3)
@@ -362,10 +364,12 @@ public class GameAction
         }
     }
 
+	/* 
     public void newGameHit(Player hitter, Player hit) // can be changed, just an idea to show how the strings for the game action should be set up. (SPRINT 4+)
     {
         String formattedStr = "<html><font color='" + hitter.getColor() + "'>" + hitter.getCodename() + "</font> hit <font color='" + hit.getColor() + "'>" + hit.getCodename() + "<\font>"; 
     }
+	*/
 
     public void updateTimer() // SPRINT (3)
     {

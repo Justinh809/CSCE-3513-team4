@@ -1,12 +1,14 @@
 import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
-
+import java.util.List;
 import javax.swing.JTextField;
 
 public class Presenter {
     Model model; // create a model inside presenter
     SplashScreen splash; // create a splash screen inside presenter
     PlayerEntry playerEntry;
+    GameAction gameAction;
+    
 
     // constructor will initialize the model and each view
     Presenter() {
@@ -14,6 +16,7 @@ public class Presenter {
         splash = new SplashScreen(); // load splash screen
         model = new Model(); // load model
         playerEntry = new PlayerEntry(this); // Load player entry screen with this as paramater
+        gameAction = new GameAction(this);
 
     }
 
@@ -31,14 +34,21 @@ public class Presenter {
     }
 
     public void startGame() { // after the players are entered and the start button is pressed
+        playerEntry.buildListForPresenter();
+        addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
+        System.out.println("Red Team: ");
+        System.out.println(model.acitveRedPlayers);
+        System.out.println("Green Team: ");
+        System.out.println(model.acitveGreenPlayers);
+        gameAction.showGameAction();
         try {
+            
             model.connection.close();
-            System.exit(1);
+            //System.exit(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // gameScreen.show()
         // model.runGame()
     }
 
@@ -80,6 +90,30 @@ public class Presenter {
             return false;
         }
 
+    }
+
+    public Player createPlayer(int id, String codename, boolean redTeam)
+    {
+        Player p = new Player(id, codename, redTeam);
+        return p;
+    }
+
+    void addPlayersToList(List<List<String>> list)
+    {
+        boolean redTeam;
+        for(int i = 0; i < list.size(); i++)
+        {
+            if(list.get(i).get(2) == "red")
+            {
+                redTeam = true;
+            }
+            else
+            {
+                redTeam = false;
+            }
+            Player p = createPlayer(Integer.parseInt(list.get(i).get(0)), list.get(i).get(1), redTeam);
+            model.addPlayer(p, redTeam);
+        }
     }
 
     void kill() { // exit game button or something can call this
