@@ -69,6 +69,7 @@ public class GameAction
     {
         presenter = p;
 
+		System.out.println("a");
         frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
