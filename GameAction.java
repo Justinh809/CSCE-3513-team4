@@ -173,7 +173,7 @@ public class GameAction
 		red_team_label = new JLabel("RED TEAM");
 		red_team_label.setForeground(Color.RED);
 		red_team_label.setBackground(Color.BLACK);
-		red_team_label.setBounds(247, 5, 138, 30);
+		red_team_label.setBounds(200, 5, 138, 30);
 		red_team_label.setFont(new Font("Rockwell", Font.BOLD, 25));
 		red_score_panel.add(red_team_label);
 		
@@ -268,7 +268,7 @@ public class GameAction
 		green_team_label = new JLabel("GREEN TEAM");
 		green_team_label.setForeground(new Color(0, 128, 0));
 		green_team_label.setFont(new Font("Rockwell", Font.BOLD, 25));
-		green_team_label.setBounds(247, 5, 205, 30);
+		green_team_label.setBounds(200, 5, 205, 30);
 		green_score_panel.add(green_team_label);
 		
 		green_player_1 = new JLabel("");
@@ -384,7 +384,7 @@ public class GameAction
 				currentScoreLabel.setText("0000"); // everyone starts with 0 points I believe
 			}
 		}
-		
+
 		if (greenPlayers.size() > MAX_PLAYERS_SHOWN)
 		{
 			for (int i = 0; i < MAX_PLAYERS_SHOWN; i++)
