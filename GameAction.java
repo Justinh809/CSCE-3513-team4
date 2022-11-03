@@ -174,42 +174,42 @@ public class GameAction
 		red_team_label = new JLabel("RED TEAM");
 		red_team_label.setForeground(Color.RED);
 		red_team_label.setBackground(Color.BLACK);
-		red_team_label.setBounds(200, 5, 138, 30);
+		red_team_label.setBounds(200, 5, 300, 40);
 		red_team_label.setFont(new Font("Rockwell", Font.BOLD, 25));
 		red_score_panel.add(red_team_label);
 		
 		red_player_1 = new JLabel("");
 		red_player_1.setForeground(Color.RED);
 		red_player_1.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_1.setBounds(10, 46, 248, 30);
+		red_player_1.setBounds(10, 56, 248, 40);
 		red_score_panel.add(red_player_1);
 		red_player_labels.add(red_player_1);
 		
 		red_player_2 = new JLabel("");
 		red_player_2.setForeground(Color.RED);
 		red_player_2.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_2.setBounds(10, 80, 248, 30);
+		red_player_2.setBounds(10, 90, 248, 40);
 		red_score_panel.add(red_player_2);
 		red_player_labels.add(red_player_2);
 		
 		red_player_3 = new JLabel("");
 		red_player_3.setForeground(Color.RED);
 		red_player_3.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_3.setBounds(10, 115, 248, 30);
+		red_player_3.setBounds(10, 125, 248, 40);
 		red_score_panel.add(red_player_3);
 		red_player_labels.add(red_player_3);
 		
 		red_player_4 = new JLabel("");
 		red_player_4.setForeground(Color.RED);
 		red_player_4.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_4.setBounds(10, 150, 248, 30);
+		red_player_4.setBounds(10, 160, 248, 40);
 		red_score_panel.add(red_player_4);
 		red_player_labels.add(red_player_4);
 		
 		red_player_5 = new JLabel("");
 		red_player_5.setForeground(Color.RED);
 		red_player_5.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_5.setBounds(10, 185, 248, 30);
+		red_player_5.setBounds(10, 195, 248, 40);
 		red_score_panel.add(red_player_5);
 		red_player_labels.add(red_player_5);
 		
@@ -217,7 +217,7 @@ public class GameAction
 		red_player_1_score.setForeground(Color.RED);
 		red_player_1_score.setHorizontalAlignment(SwingConstants.CENTER);
 		red_player_1_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_1_score.setBounds(439, 45, 108, 30);
+		red_player_1_score.setBounds(439, 56, 108, 40);
 		red_score_panel.add(red_player_1_score);
 		red_score_labels.add(red_player_1_score);
 		
@@ -225,7 +225,7 @@ public class GameAction
 		red_player_2_score.setForeground(Color.RED);
 		red_player_2_score.setHorizontalAlignment(SwingConstants.CENTER);
 		red_player_2_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_2_score.setBounds(439, 80, 108, 30);
+		red_player_2_score.setBounds(439, 90, 108, 40);
 		red_score_panel.add(red_player_2_score);
 		red_score_labels.add(red_player_2_score);
 		
@@ -233,7 +233,7 @@ public class GameAction
 		red_player_3_score.setForeground(Color.RED);
 		red_player_3_score.setHorizontalAlignment(SwingConstants.CENTER);
 		red_player_3_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_3_score.setBounds(439, 115, 108, 30);
+		red_player_3_score.setBounds(439, 125, 108, 40);
 		red_score_panel.add(red_player_3_score);
 		red_score_labels.add(red_player_3_score);
 		
@@ -241,7 +241,7 @@ public class GameAction
 		red_player_4_score.setForeground(Color.RED);
 		red_player_4_score.setHorizontalAlignment(SwingConstants.CENTER);
 		red_player_4_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_4_score.setBounds(439, 150, 108, 30);
+		red_player_4_score.setBounds(439, 160, 108, 40);
 		red_score_panel.add(red_player_4_score);
 		red_score_labels.add(red_player_4_score);
 		
@@ -249,7 +249,7 @@ public class GameAction
 		red_player_5_score.setForeground(Color.RED);
 		red_player_5_score.setHorizontalAlignment(SwingConstants.CENTER);
 		red_player_5_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		red_player_5_score.setBounds(439, 185, 108, 30);
+		red_player_5_score.setBounds(439, 195, 108, 40);
 		red_score_panel.add(red_player_5_score);
 		red_score_labels.add(red_player_5_score);
 		
@@ -269,41 +269,41 @@ public class GameAction
 		green_team_label = new JLabel("GREEN TEAM");
 		green_team_label.setForeground(new Color(0, 128, 0));
 		green_team_label.setFont(new Font("Rockwell", Font.BOLD, 25));
-		green_team_label.setBounds(200, 5, 205, 30);
+		green_team_label.setBounds(200, 5, 300 , 40);
 		green_score_panel.add(green_team_label);
 		
 		green_player_1 = new JLabel("");
 		green_player_1.setForeground(new Color(0, 128, 0));
 		green_player_1.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_1.setBounds(10, 45, 248, 30);
+		green_player_1.setBounds(10, 56, 248, 40);
 		green_score_panel.add(green_player_1);
 		green_player_labels.add(green_player_1);
 		
 		green_player_2 = new JLabel("");
 		green_player_2.setForeground(new Color(0, 128, 0));
 		green_player_2.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_2.setBounds(10, 80, 248, 30);
+		green_player_2.setBounds(10, 90, 248, 40);
 		green_score_panel.add(green_player_2);
 		green_player_labels.add(green_player_2);
 		
 		green_player_3 = new JLabel("");
 		green_player_3.setForeground(new Color(0, 128, 0));
 		green_player_3.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_3.setBounds(10, 115, 248, 30);
+		green_player_3.setBounds(10, 125, 248, 40);
 		green_score_panel.add(green_player_3);
 		green_player_labels.add(green_player_3);
 		
 		green_player_4 = new JLabel("");
 		green_player_4.setForeground(new Color(0, 128, 0));
 		green_player_4.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_4.setBounds(10, 150, 248, 30);
+		green_player_4.setBounds(10, 160, 248, 40);
 		green_score_panel.add(green_player_4);
 		green_player_labels.add(green_player_4);
 		
 		green_player_5 = new JLabel("");
 		green_player_5.setForeground(new Color(0, 128, 0));
 		green_player_5.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_5.setBounds(10, 185, 248, 30);
+		green_player_5.setBounds(10, 195, 248, 40);
 		green_score_panel.add(green_player_5);
 		green_player_labels.add(green_player_5);
 		
@@ -311,7 +311,7 @@ public class GameAction
 		green_player_1_score.setForeground(new Color(0, 128, 0));
 		green_player_1_score.setHorizontalAlignment(SwingConstants.CENTER);
 		green_player_1_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_1_score.setBounds(439, 45, 108, 30);
+		green_player_1_score.setBounds(439, 56, 108, 40);
 		green_score_panel.add(green_player_1_score);
 		green_score_labels.add(green_player_1_score);
 		
@@ -319,7 +319,7 @@ public class GameAction
 		green_player_2_score.setForeground(new Color(0, 128, 0));
 		green_player_2_score.setHorizontalAlignment(SwingConstants.CENTER);
 		green_player_2_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_2_score.setBounds(439, 80, 108, 30);
+		green_player_2_score.setBounds(439, 90, 108, 40);
 		green_score_panel.add(green_player_2_score);
 		green_score_labels.add(green_player_2_score);
 		
@@ -327,7 +327,7 @@ public class GameAction
 		green_player_3_score.setForeground(new Color(0, 128, 0));
 		green_player_3_score.setHorizontalAlignment(SwingConstants.CENTER);
 		green_player_3_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_3_score.setBounds(439, 115, 108, 30);
+		green_player_3_score.setBounds(439, 125, 108, 40);
 		green_score_panel.add(green_player_3_score);
 		green_score_labels.add(green_player_3_score);
 		
@@ -335,7 +335,7 @@ public class GameAction
 		green_player_4_score.setForeground(new Color(0, 128, 0));
 		green_player_4_score.setHorizontalAlignment(SwingConstants.CENTER);
 		green_player_4_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_4_score.setBounds(439, 150, 108, 30);
+		green_player_4_score.setBounds(439, 160, 108, 40);
 		green_score_panel.add(green_player_4_score);
 		green_score_labels.add(green_player_4_score);
 		
@@ -343,7 +343,7 @@ public class GameAction
 		green_player_5_score.setForeground(new Color(0, 128, 0));
 		green_player_5_score.setHorizontalAlignment(SwingConstants.CENTER);
 		green_player_5_score.setFont(new Font("Rockwell", Font.PLAIN, 30));
-		green_player_5_score.setBounds(439, 185, 108, 30);
+		green_player_5_score.setBounds(439, 195, 108, 40);
 		green_score_panel.add(green_player_5_score);
 		green_score_labels.add(green_player_5_score);
 		
