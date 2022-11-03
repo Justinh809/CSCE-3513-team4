@@ -17,7 +17,6 @@ public class Presenter {
         model = new Model(); // load model
         playerEntry = new PlayerEntry(this); // Load player entry screen with this as paramater
         gameAction = new GameAction(this);
-
     }
 
     public void startApp() {
@@ -42,6 +41,7 @@ public class Presenter {
         System.out.println("Green Team: ");
         System.out.println(model.acitveGreenPlayers);
         gameAction.showGameAction();
+        gameAction.initializePlayersOnStart();
         try {
             
             model.connection.close();
