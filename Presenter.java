@@ -42,6 +42,7 @@ public class Presenter {
         System.out.println("Green Team: ");
         System.out.println(model.acitveGreenPlayers);
         gameAction.showGameAction();
+        
         try {
             
             model.connection.close();
