@@ -8,7 +8,6 @@ public class Presenter {
     SplashScreen splash; // create a splash screen inside presenter
     PlayerEntry playerEntry;
     GameAction gameAction;
-    
 
     // constructor will initialize the model and each view
     Presenter() {
@@ -43,9 +42,9 @@ public class Presenter {
         gameAction.showGameAction();
         gameAction.initializePlayersOnStart();
         try {
-            
+
             model.connection.close();
-            //System.exit(1);
+            // System.exit(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,23 +91,17 @@ public class Presenter {
 
     }
 
-    public Player createPlayer(int id, String codename, boolean redTeam)
-    {
+    public Player createPlayer(int id, String codename, boolean redTeam) {
         Player p = new Player(id, codename, redTeam);
         return p;
     }
 
-    void addPlayersToList(List<List<String>> list)
-    {
+    void addPlayersToList(List<List<String>> list) {
         boolean redTeam;
-        for(int i = 0; i < list.size(); i++)
-        {
-            if(list.get(i).get(2) == "red")
-            {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).get(2) == "red") {
                 redTeam = true;
-            }
-            else
-            {
+            } else {
                 redTeam = false;
             }
             Player p = createPlayer(Integer.parseInt(list.get(i).get(0)), list.get(i).get(1), redTeam);
