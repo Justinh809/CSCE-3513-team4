@@ -87,7 +87,7 @@ public class GameAction
 		timer_panel.setBounds(0, 612, 1264, 70);
 		frame.getContentPane().add(timer_panel);
 		
-		timer_label = new JLabel("00:00");
+		timer_label = new JLabel("LOADING GAME...");
 		timer_label.setForeground(Color.WHITE);
 		timer_label.setFont(new Font("Rockwell", Font.PLAIN, 50));
 		timer_panel.add(timer_label);
@@ -380,8 +380,9 @@ public class GameAction
 	*/
 
 	int secondsPassed = 31;
-	int minute = 30;
+	int minute = 6;
 	boolean isPregame = true;
+	boolean gameOver = false;
 
 	Timer myTimer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -402,26 +403,38 @@ public class GameAction
     
 	{
 
-		secondsPassed--;
+		if(minute <= 0 && secondsPassed <= 0){
+
+			timer_label.setText("GAME OVER");
+
+			task.cancel();
+
+		}
+
+		else {
+
+			secondsPassed--;
 
 				if(secondsPassed < 0){
 
 					minute--;
 					isPregame = false;
 					secondsPassed = 59;
-				}
 
+				}
+					
 				if(isPregame){
 
-					timer_label.setText("Pre-Game Countdown: " + Integer.toString(secondsPassed));
+					timer_label.setText("Game is about to start... " + Integer.toString(secondsPassed));
 
 				}
 
 				else {
 
-					timer_label.setText(Integer.toString(minute) + " : " + secondsPassed);
+					timer_label.setText(Integer.toString(minute) + " : " + Integer.toString(secondsPassed));
 
 				}
+		}	
 
     }
 
@@ -430,7 +443,6 @@ public class GameAction
     {
         frame.setVisible(true);
 		startTimer();
-		// updateTimer();
     }
 
     public void hideGameAction()
