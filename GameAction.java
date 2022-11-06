@@ -11,15 +11,22 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.TimerTask;
+
 import javax.swing.SwingConstants;
+import java.util.Timer;
+
+import javax.swing.plaf.DimensionUIResource;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import java.util.List;
 import java.util.ArrayList;
 
 public class GameAction
 {
     final int POINTS_ON_HIT = 100; // update this if needed
-
-    JFrame frame;
+	
+	JFrame frame;
     Presenter presenter;
 	JPanel timer_panel;
 	JPanel live_action_panel;
@@ -73,6 +80,7 @@ public class GameAction
     {
         presenter = p;
 
+
 		System.out.println("a");
         frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -84,7 +92,7 @@ public class GameAction
 		timer_panel.setBounds(0, 612, 1264, 70);
 		frame.getContentPane().add(timer_panel);
 		
-		timer_label = new JLabel("00:00");
+		timer_label = new JLabel("LOADING GAME...");
 		timer_label.setForeground(Color.WHITE);
 		timer_label.setFont(new Font("Rockwell", Font.PLAIN, 50));
 		timer_panel.add(timer_label);
@@ -437,16 +445,70 @@ public class GameAction
     }
 	*/
 
+	int secondsPassed = 31;
+	int minute = 6;
+	boolean isPregame = true;
+	boolean gameOver = false;
+
+	Timer myTimer = new Timer();
+		TimerTask task = new TimerTask() {
+			public void run (){
+
+				updateTimer();
+
+			}
+		};
+
+	public void startTimer(){
+
+		myTimer.scheduleAtFixedRate(task, 1000, 1000);
+
+	}
+
     public void updateTimer() // SPRINT (3)
-    {
-        String newTime = "00:00";
-        //TODO: Add timer mechanism here
-        timer_label.setText(newTime);
+    
+	{
+
+		if(minute <= 0 && secondsPassed <= 0){
+
+			timer_label.setText("GAME OVER");
+
+			task.cancel();
+
+		}
+
+		else {
+
+			secondsPassed--;
+
+				if(secondsPassed < 0){
+
+					minute--;
+					isPregame = false;
+					secondsPassed = 59;
+
+				}
+					
+				if(isPregame){
+
+					timer_label.setText("Game is about to start... " + Integer.toString(secondsPassed));
+
+				}
+
+				else {
+
+					timer_label.setText(Integer.toString(minute) + " : " + Integer.toString(secondsPassed));
+
+				}
+		}	
+
     }
+
 
     public void showGameAction()
     {
         frame.setVisible(true);
+		startTimer();
     }
 
     public void hideGameAction()
