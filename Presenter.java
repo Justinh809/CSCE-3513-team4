@@ -67,6 +67,7 @@ public class Presenter {
                     codename_field.setText(model.getCodeName()); // set the corresponding codename to the codename
                                                                  // matching id
                     codename_field.setEnabled(false); // make the codename field uneditable
+                    playerEntry.updateFrame();
                     return 0;
                 } else {
                     return 1; // Codename not present, initiates request for a new one from user
@@ -84,6 +85,7 @@ public class Presenter {
         if (codename_field.getText().matches("^[a-zA-Z]+$")) {
             model.addCodeName(id_field.getText(), codename_field.getText());
             codename_field.setEnabled(false); // make the codename field uneditable
+            playerEntry.updateFrame();
             return true;
         } else {
             return false;

@@ -12,11 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.AWTEventListener;
+import java.awt.AWTEvent;
+import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,39 @@ public class PlayerEntry {
 	ArrayList<JTextField> codenames_list = new ArrayList<JTextField>();
 	List<Integer> fieldsInUse = new ArrayList<Integer>();
 	List<List<String>> toBePassed = new ArrayList<List<String>>();
+
+	/*
+	 * Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener(){
+	 * 
+	 * int count;
+	 * 
+	 * @Override
+	 * public void eventDispatched(AWTEvent event) {
+	 * Object source = event.getSource();
+	 * if (source instanceof Component) {
+	 * Component comp = (Component) source;
+	 * Window win = null;
+	 * if (comp instanceof Window) {
+	 * win = (Window) comp;
+	 * } else {
+	 * win = SwingUtilities.windowForComponent(comp);
+	 * }
+	 * if (win == frame) {
+	 * timer.restart();
+	 * label.setText("Interrupted..." + (++count));
+	 * }
+	 * }
+	 * }},AWTEvent.KEY_EVENT_MASK|AWTEvent.MOUSE_EVENT_MASK|AWTEvent.
+	 * MOUSE_MOTION_EVENT_MASK|AWTEvent.MOUSE_WHEEL_EVENT_MASK);
+	 * timer = new Timer(5000, new ActionListener() {
+	 * 
+	 * @Override
+	 * public void actionPerformed(ActionEvent e) {
+	 * frame.dispose();
+	 * }
+	 * });
+	 * timer.start();
+	 */
 
 	JFrame frame;
 	JLabel message_label;
@@ -854,6 +891,12 @@ public class PlayerEntry {
 		frame.setSize(800, 800);
 		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation((size.width - frame.getWidth()) / 2, (size.height - frame.getHeight()) / 2);
+	}
+
+	public void updateFrame() {
+		frame.setVisible(true);
+		frame.toFront();
+		frame.requestFocus();
 	}
 
 	public void idListener(int field) {
