@@ -1,3 +1,10 @@
+/*
+ * Presenter for Software Engineering (CSCE3513) (TEAM 4)
+ * Date: 9/16/2022
+ * 
+ * Handles communication between model and the view screens
+ */
+
 import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
 import java.util.List;
@@ -35,10 +42,6 @@ public class Presenter {
         playerEntry.buildListForPresenter();
         addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
-        System.out.println("Red Team: ");
-        System.out.println(model.acitveRedPlayers);
-        System.out.println("Green Team: ");
-        System.out.println(model.acitveGreenPlayers);
         gameAction.showGameAction();
         gameAction.initializePlayersOnStart();
         try {
@@ -67,6 +70,7 @@ public class Presenter {
                     codename_field.setText(model.getCodeName()); // set the corresponding codename to the codename
                                                                  // matching id
                     codename_field.setEnabled(false); // make the codename field uneditable
+                    playerEntry.updateFrame();
                     return 0;
                 } else {
                     return 1; // Codename not present, initiates request for a new one from user
@@ -84,6 +88,7 @@ public class Presenter {
         if (codename_field.getText().matches("^[a-zA-Z]+$")) {
             model.addCodeName(id_field.getText(), codename_field.getText());
             codename_field.setEnabled(false); // make the codename field uneditable
+            playerEntry.updateFrame();
             return true;
         } else {
             return false;

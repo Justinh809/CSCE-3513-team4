@@ -1,4 +1,3 @@
-
 /*
  * Laser Tag for Software Engineering (CSCE3513) (TEAM 4)
  * Date: 9/16/2022
