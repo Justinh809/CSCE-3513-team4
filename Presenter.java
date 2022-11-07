@@ -1,3 +1,10 @@
+/*
+ * Presenter for Software Engineering (CSCE3513) (TEAM 4)
+ * Date: 9/16/2022
+ * 
+ * Handles communication between model and the view screens
+ */
+
 import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
 import java.util.List;
@@ -35,10 +42,6 @@ public class Presenter {
         playerEntry.buildListForPresenter();
         addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
-        System.out.println("Red Team: ");
-        System.out.println(model.acitveRedPlayers);
-        System.out.println("Green Team: ");
-        System.out.println(model.acitveGreenPlayers);
         gameAction.showGameAction();
         gameAction.initializePlayersOnStart();
         try {

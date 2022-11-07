@@ -11,14 +11,14 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.ActionListener;
+// import java.awt.event.ActionListener;
 import java.util.TimerTask;
 
 import javax.swing.SwingConstants;
 import java.util.Timer;
 
-import javax.swing.plaf.DimensionUIResource;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+// import javax.swing.plaf.DimensionUIResource;
+// import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -80,8 +80,6 @@ public class GameAction
     {
         presenter = p;
 
-
-		System.out.println("a");
         frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setLayout(null);
@@ -453,55 +451,34 @@ public class GameAction
 	Timer myTimer = new Timer();
 		TimerTask task = new TimerTask() {
 			public void run (){
-
 				updateTimer();
-
 			}
 		};
 
 	public void startTimer(){
-
 		myTimer.scheduleAtFixedRate(task, 1000, 1000);
-
 	}
 
     public void updateTimer() // SPRINT (3)
-    
 	{
-
-		if(minute <= 0 && secondsPassed <= 0){
-
+		if(minute <= 0 && secondsPassed <= 0) {
 			timer_label.setText("GAME OVER");
-
 			task.cancel();
-
 		}
-
 		else {
-
 			secondsPassed--;
-
 				if(secondsPassed < 0){
-
 					minute--;
 					isPregame = false;
 					secondsPassed = 59;
-
-				}
-					
-				if(isPregame){
-
+				}	
+				if(isPregame) {
 					timer_label.setText("Game is about to start... " + Integer.toString(secondsPassed));
-
 				}
-
 				else {
-
 					timer_label.setText(Integer.toString(minute) + " : " + Integer.toString(secondsPassed));
-
 				}
 		}	
-
     }
 
 

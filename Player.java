@@ -1,3 +1,10 @@
+/*
+ * Player for Software Engineering (CSCE3513) (TEAM 4)
+ * Date: 10/28/2022
+ * 
+ * Defines the player class 
+ */
+
 public class Player {
     private String codename;
     private int id;
@@ -11,6 +18,7 @@ public class Player {
         score = 0;
     }
 
+    // Not used in sprint 3
     public void increaseScore(int points) {
         score += points;
     }

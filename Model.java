@@ -1,3 +1,10 @@
+/*
+ * Model for Software Engineering (CSCE3513) (TEAM 4)
+ * Date: 9/16/2022
+ * 
+ * Connects to DB and stores player information
+ */
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
