@@ -12,14 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+// import javax.swing.SwingUtilities;
 import javax.swing.JCheckBox;
+// import javax.lang.model.util.ElementScanner6;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.AWTEventListener;
-import java.awt.AWTEvent;
+// import java.awt.event.AWTEventListener;
+// import java.awt.AWTEvent;
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -32,39 +33,8 @@ public class PlayerEntry {
 	ArrayList<JTextField> codenames_list = new ArrayList<JTextField>();
 	List<Integer> fieldsInUse = new ArrayList<Integer>();
 	List<List<String>> toBePassed = new ArrayList<List<String>>();
-
-	/*
-	 * Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener(){
-	 * 
-	 * int count;
-	 * 
-	 * @Override
-	 * public void eventDispatched(AWTEvent event) {
-	 * Object source = event.getSource();
-	 * if (source instanceof Component) {
-	 * Component comp = (Component) source;
-	 * Window win = null;
-	 * if (comp instanceof Window) {
-	 * win = (Window) comp;
-	 * } else {
-	 * win = SwingUtilities.windowForComponent(comp);
-	 * }
-	 * if (win == frame) {
-	 * timer.restart();
-	 * label.setText("Interrupted..." + (++count));
-	 * }
-	 * }
-	 * }},AWTEvent.KEY_EVENT_MASK|AWTEvent.MOUSE_EVENT_MASK|AWTEvent.
-	 * MOUSE_MOTION_EVENT_MASK|AWTEvent.MOUSE_WHEEL_EVENT_MASK);
-	 * timer = new Timer(5000, new ActionListener() {
-	 * 
-	 * @Override
-	 * public void actionPerformed(ActionEvent e) {
-	 * frame.dispose();
-	 * }
-	 * });
-	 * timer.start();
-	 */
+	boolean greenTeamEmpty = true;
+	boolean redTeamEmpty = true;
 
 	JFrame frame;
 	JLabel message_label;
@@ -155,21 +125,18 @@ public class PlayerEntry {
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Entry Terminal");
 		frame.addKeyListener(new KeyListener() {
-			public void keyPressed(KeyEvent e) {
+			public void keyPressed(KeyEvent e) {}
 
-			}
+			public void keyReleased(KeyEvent e) {}
 
-			public void keyReleased(KeyEvent e) {
-
-			}
-
+			// = starts the game
 			public void keyTyped(KeyEvent e) {
-				System.out.println("keyTyped: " + e);
-
 				switch (e.getKeyChar()) {
 					case '=':
-						System.out.println("= typed");
-						presenter.startGame();
+						if(!redTeamEmpty && !greenTeamEmpty)
+							presenter.startGame();
+						else
+							showMessage("Both teams must have at least one player before continuing");
 						break;
 				}
 
@@ -881,7 +848,11 @@ public class PlayerEntry {
 
 		button_start_game.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				presenter.startGame();
+				if(!redTeamEmpty && !greenTeamEmpty)
+					presenter.startGame();
+				else
+					showMessage("Both teams must have at least one player before continuing");
+
 			}
 		});
 		button_start_game.setBounds(344, 660, 98, 90);
@@ -922,6 +893,14 @@ public class PlayerEntry {
 						showMessage("Codename input needs to be only characters.");
 					} else {
 						showMessage("");
+						if(field <= 14)
+						{
+							redTeamEmpty = false;
+						}
+						else
+						{
+							greenTeamEmpty = false;
+						}
 						fieldsInUse.add(field);
 					}
 				}
@@ -935,6 +914,10 @@ public class PlayerEntry {
 		} else if (result == 0) // ID was valid and codename existed in database already
 		{
 			showMessage("");
+			if(field <= 14)
+				redTeamEmpty = false; // Used in a check for the start game button
+			else
+				greenTeamEmpty = false; // Used in a check for the start game button
 			fieldsInUse.add(field);
 		}
 	}
