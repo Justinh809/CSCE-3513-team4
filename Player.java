@@ -5,7 +5,7 @@
  * Defines the player class 
  */
 
-public class Player {
+public class Player implements Comparable<Player> {
     private String codename;
     private int id;
     private int score;
@@ -38,6 +38,12 @@ public class Player {
     // red -> true , green -> false
     public boolean isRedTeam() {
         return redTeam;
+    }
+
+    @Override
+    public int compareTo(Player comparePlayer) {
+        int compareScore = ((Player)comparePlayer).getScore();
+        return compareScore-this.score;
     }
 
     @Override
