@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 // import java.awt.event.ActionListener;
 import java.util.TimerTask;
-
+import java.util.Collections;
 import javax.swing.SwingConstants;
 import java.util.Timer;
 
@@ -75,6 +75,7 @@ public class GameAction
 	ArrayList<JLabel> green_player_labels = new ArrayList<JLabel>();
 	ArrayList<JLabel> red_score_labels = new ArrayList<JLabel>();
 	ArrayList<JLabel> green_score_labels = new ArrayList<JLabel>();
+    ArrayList<JLabel> game_action_labels = new ArrayList<JLabel>();
 
     public GameAction(Presenter p)
     {
@@ -107,6 +108,7 @@ public class GameAction
 		game_action_1.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_1.setBounds(10, 10, 1244, 27);
 		live_action_panel.add(game_action_1);
+        game_action_labels.add(game_action_1);
 		
 		game_action_2 = new JLabel("");
 		game_action_2.setForeground(Color.WHITE);
@@ -114,6 +116,7 @@ public class GameAction
 		game_action_2.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_2.setBounds(10, 38, 1244, 27);
 		live_action_panel.add(game_action_2);
+        game_action_labels.add(game_action_2);
 		
 		game_action_3 = new JLabel("");
 		game_action_3.setForeground(Color.WHITE);
@@ -121,6 +124,7 @@ public class GameAction
 		game_action_3.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_3.setBounds(10, 66, 1244, 27);
 		live_action_panel.add(game_action_3);
+        game_action_labels.add(game_action_3);
 		
 		game_action_4 = new JLabel("");
 		game_action_4.setForeground(Color.WHITE);
@@ -128,6 +132,7 @@ public class GameAction
 		game_action_4.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_4.setBounds(10, 94, 1244, 27);
 		live_action_panel.add(game_action_4);
+        game_action_labels.add(game_action_4);
 		
 		game_action_5 = new JLabel("");
 		game_action_5.setForeground(Color.WHITE);
@@ -135,6 +140,7 @@ public class GameAction
 		game_action_5.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_5.setBounds(10, 122, 1244, 27);
 		live_action_panel.add(game_action_5);
+        game_action_labels.add(game_action_5);
 		
 		game_action_6 = new JLabel("");
 		game_action_6.setForeground(Color.WHITE);
@@ -142,6 +148,7 @@ public class GameAction
 		game_action_6.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_6.setBounds(10, 150, 1244, 27);
 		live_action_panel.add(game_action_6);
+        game_action_labels.add(game_action_6);
 		
 		game_action_7 = new JLabel("");
 		game_action_7.setForeground(Color.WHITE);
@@ -149,6 +156,7 @@ public class GameAction
 		game_action_7.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_7.setBounds(10, 178, 1244, 27);
 		live_action_panel.add(game_action_7);
+        game_action_labels.add(game_action_7);
 		
 		game_action_8 = new JLabel("");
 		game_action_8.setForeground(Color.WHITE);
@@ -156,6 +164,7 @@ public class GameAction
 		game_action_8.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_8.setBounds(10, 206, 1244, 27);
 		live_action_panel.add(game_action_8);
+        game_action_labels.add(game_action_8);
 		
 		game_action_9 = new JLabel("");
 		game_action_9.setForeground(Color.WHITE);
@@ -163,6 +172,7 @@ public class GameAction
 		game_action_9.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_9.setBounds(10, 234, 1244, 27);
 		live_action_panel.add(game_action_9);
+        game_action_labels.add(game_action_9);
 		
 		game_action_10 = new JLabel("");
 		game_action_10.setForeground(Color.WHITE);
@@ -170,6 +180,7 @@ public class GameAction
 		game_action_10.setFont(new Font("Rockwell", Font.PLAIN, 20));
 		game_action_10.setBounds(10, 262, 1244, 27);
 		live_action_panel.add(game_action_10);
+        game_action_labels.add(game_action_10);
 		
 		red_score_panel = new JPanel();
 		red_score_panel.setBackground(Color.BLACK);
@@ -366,20 +377,22 @@ public class GameAction
 		frame.setSize(1264, 710);
     }
 
-    public void initializePlayersOnStart() // add what players start on the leaderboard before game starts (SPRINT 3)
+    public void updateScoreboard(List<Player> redPlayers, List<Player> greenPlayers) // add what players start on the leaderboard before game starts (SPRINT 3)
     {
-		List<Player> redPlayers = presenter.model.acitveRedPlayers;
-		List<Player> greenPlayers = presenter.model.acitveGreenPlayers; 
 		final int MAX_PLAYERS_SHOWN = 5;
+		List<Player> sortedRedPlayers = presenter.model.acitveRedPlayers;
+		List<Player> sortedGreenPlayers = presenter.model.acitveGreenPlayers;
+		Collections.sort(sortedRedPlayers);
+		Collections.sort(sortedGreenPlayers);
 
-		if (redPlayers.size() > MAX_PLAYERS_SHOWN) // if there are more players than 5 on red team
+		if (sortedRedPlayers.size() > MAX_PLAYERS_SHOWN) // if there are more players than 5 on red team
 		{
 			for (int i = 0; i < MAX_PLAYERS_SHOWN; i++)
 			{
 				JLabel currentCodenameLabel = red_player_labels.get(i);
 				JLabel currentScoreLabel = red_score_labels.get(i);
-				currentCodenameLabel.setText(redPlayers.get(i).getCodename());
-				currentScoreLabel.setText("0000"); // everyone starts with 0 points I believe
+				currentCodenameLabel.setText(sortedRedPlayers.get(i).getCodename());
+				currentScoreLabel.setText(String.valueOf(sortedRedPlayers.get(i).getScore()));
 			}
 		} else // if there are less than 5 players on red team
 		{
@@ -387,19 +400,19 @@ public class GameAction
 			{
 				JLabel currentCodenameLabel = red_player_labels.get(i);
 				JLabel currentScoreLabel = red_score_labels.get(i);
-				currentCodenameLabel.setText(redPlayers.get(i).getCodename());
-				currentScoreLabel.setText("0000"); // everyone starts with 0 points I believe
+				currentCodenameLabel.setText(sortedRedPlayers.get(i).getCodename());
+				currentScoreLabel.setText(String.valueOf(sortedRedPlayers.get(i).getScore()));
 			}
 		}
 
-		if (greenPlayers.size() > MAX_PLAYERS_SHOWN)
+		if (sortedGreenPlayers.size() > MAX_PLAYERS_SHOWN)
 		{
 			for (int i = 0; i < MAX_PLAYERS_SHOWN; i++)
 			{
 				JLabel currentCodenameLabel = green_player_labels.get(i);
 				JLabel currentScoreLabel = green_score_labels.get(i);
-				currentCodenameLabel.setText(greenPlayers.get(i).getCodename());
-				currentScoreLabel.setText("0000");
+				currentCodenameLabel.setText(sortedGreenPlayers.get(i).getCodename());
+				currentScoreLabel.setText(String.valueOf(sortedGreenPlayers.get(i).getScore()));
 			}
 		} else
 		{
@@ -407,15 +420,33 @@ public class GameAction
 			{
 				JLabel currentCodenameLabel = green_player_labels.get(i);
 				JLabel currentScoreLabel = green_score_labels.get(i);
-				currentCodenameLabel.setText(greenPlayers.get(i).getCodename());
-				currentScoreLabel.setText("0000");
+				currentCodenameLabel.setText(sortedGreenPlayers.get(i).getCodename());
+				currentScoreLabel.setText(String.valueOf(sortedGreenPlayers.get(i).getScore()));
 			}
 		}
     }
 
-    public void updatePlayerScore(int field) // (SPRINT 4+)
+    public void updatePlayerScore(int playerID) // (SPRINT 4+)
     {
-        // TODO
+
+        /* This code may need to go in the presenter/model class.
+        List<Player> redPlayers = presenter.model.acitveRedPlayers;
+		List<Player> greenPlayers = presenter.model.acitveGreenPlayers;
+        for (int i = 0; i < redPlayers.size(); i++)
+        {
+            if (playerID == redPlayers.get(i).getId())
+            {
+                redPlayers.get(i).increaseScore(POINTS_ON_HIT);
+            }
+        }
+        for (int i = 0; i < greenPlayers.size(); i++)
+        {
+            if (playerID == greenPlayers.get(i).getId())
+            {
+                greenPlayers.get(i).increaseScore(POINTS_ON_HIT);
+            }
+        }
+        */
     }
 
     public void updateTeamScore(String team) // may need updating, just an idea of how to update team score (SPRINT 4+)
@@ -436,13 +467,42 @@ public class GameAction
         }
     }
 
-	/* 
-    public void newGameHit(Player hitter, Player hit) // can be changed, just an idea to show how the strings for the game action should be set up. (SPRINT 4+)
+    //Game Action Functions
+    public void updateGameAction(Player hitter, Player hit)
     {
-        String formattedStr = "<html><font color='" + hitter.getColor() + "'>" + hitter.getCodename() + "</font> hit <font color='" + hit.getColor() + "'>" + hit.getCodename() + "<\font>"; 
+        String newEvent = getGameEventString(hitter, hit);
+        for (int i = 8; i > 0; i++)
+        {
+            game_action_labels.get(i).setText(game_action_labels.get(i+1).getText());
+        }
+        game_action_10.setText(newEvent);
     }
-	*/
 
+    public String getGameEventString(Player hitter, Player hit) // "codenameHitter hit codenameHit"
+    {
+        String codenameHitter = hitter.getCodename();
+        String codenameHit = hit.getCodename();
+        String hitterTeam;
+        String hitTeam;
+        if (hitter.isRedTeam())
+        {
+            hitterTeam = "RED";
+        } else
+        {
+            hitterTeam = "GREEN";
+        }
+        if (hit.isRedTeam())
+        {
+            hitTeam = "RED";
+        } else
+        {
+            hitTeam = "GREEN";
+        }
+        String formattedStr = "<html><font color='" + hitterTeam + "'>" + codenameHitter + "</font> hit <font color='" + hitTeam + "'>" + codenameHit + "<\font>";
+	return formattedStr; 
+    }
+
+    //Timer Functions
 	int secondsPassed = 31;
 	int minute = 6;
 	boolean isPregame = true;
@@ -481,7 +541,7 @@ public class GameAction
 		}	
     }
 
-
+    //Show/Hide Functions
     public void showGameAction()
     {
         frame.setVisible(true);
