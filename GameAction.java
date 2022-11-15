@@ -426,6 +426,64 @@ public class GameAction
 		}
     }
 
+	public void flashHighestTeam()
+	{
+		int red_score = Integer.parseInt(red_team_score.getText());
+		int green_score = Integer.parseInt(green_team_score.getText());
+
+		if (red_score > green_score)
+		{
+			if (red_team_score.isVisible())
+			{
+				red_team_score.setVisible(false);
+			} else
+			{
+				red_team_score.setVisible(true);
+			}
+		} else
+		{
+			if (green_team_score.isVisible())
+			{
+				green_team_score.setVisible(false);
+			} else
+			{
+				green_team_score.setVisible(true);
+			}
+		}
+	}
+
+	public void flashHighestPlayer()
+	{
+		List<Player> sortedRedPlayers = presenter.model.acitveRedPlayers;
+		List<Player> sortedGreenPlayers = presenter.model.acitveGreenPlayers;
+		Collections.sort(sortedRedPlayers);
+		Collections.sort(sortedGreenPlayers);
+
+		if (sortedRedPlayers.get(0).getScore() > sortedGreenPlayers.get(0).getScore())
+		{
+			if (red_player_1.isVisible())
+			{
+				red_player_1.setVisible(false);
+				red_player_1_score.setVisible(false);
+			} else
+			{
+				red_player_1.setVisible(true);
+				red_player_1_score.setVisible(true);
+			}
+		} else
+		{
+			if (green_player_1.isVisible())
+			{
+				green_player_1.setVisible(false);
+				green_player_1_score.setVisible(false);
+			} else
+			{
+				green_player_1.setVisible(true);
+				green_player_1_score.setVisible(true);
+			}
+		}
+	}
+
     public void updatePlayerScore(int playerID) // (SPRINT 4+)
     {
 
@@ -499,8 +557,20 @@ public class GameAction
             hitTeam = "GREEN";
         }
         String formattedStr = "<html><font color='" + hitterTeam + "'>" + codenameHitter + "</font> hit <font color='" + hitTeam + "'>" + codenameHit + "<\font>";
-	return formattedStr; 
+		return formattedStr; 
     }
+
+	Timer flashTimer = new Timer();
+		TimerTask flashTask = new TimerTask() {
+			public void run() {
+				flashHighestPlayer();
+				flashHighestTeam();
+			}
+		};
+	
+	public void startFlashTimer() {
+		flashTimer.scheduleAtFixedRate(flashTask, 750, 750);
+	}
 
     //Timer Functions
 	int secondsPassed = 31;
@@ -512,6 +582,8 @@ public class GameAction
 		TimerTask task = new TimerTask() {
 			public void run (){
 				updateTimer();
+				// flashHighestPlayer();
+				// flashHighestTeam();
 			}
 		};
 
@@ -546,6 +618,7 @@ public class GameAction
     {
         frame.setVisible(true);
 		startTimer();
+		startFlashTimer();
     }
 
     public void hideGameAction()
