@@ -43,7 +43,7 @@ public class Presenter {
         addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
         gameAction.showGameAction();
-        gameAction.updateScoreboard(model.activeRedPlayers, model.activeGreenPlayers);
+        gameAction.updateScoreboard(model.acitveRedPlayers, model.acitveGreenPlayers);
         try {
 
             model.connection.close();
