@@ -377,7 +377,8 @@ public class GameAction
 		frame.setSize(1264, 710);
     }
 
-    public void updateScoreboard(List<Player> redPlayers, List<Player> greenPlayers) // add what players start on the leaderboard before game starts (SPRINT 3)
+	// Updates the scoreboard for each team in order of points. Call then when a player scores to resort the list.
+    public void updateScoreboard(List<Player> redPlayers, List<Player> greenPlayers)
     {
 		final int MAX_PLAYERS_SHOWN = 5;
 		List<Player> sortedRedPlayers = presenter.model.acitveRedPlayers;
@@ -426,6 +427,7 @@ public class GameAction
 		}
     }
 
+	// Flash the highest team's score. Call this within the flash timer.
 	public void flashHighestTeam()
 	{
 		int red_score = Integer.parseInt(red_team_score.getText());
@@ -452,6 +454,7 @@ public class GameAction
 		}
 	}
 
+	// Flash the player with the highest score. Call this within the timer for the flash.
 	public void flashHighestPlayer()
 	{
 		List<Player> sortedRedPlayers = presenter.model.acitveRedPlayers;
@@ -507,25 +510,26 @@ public class GameAction
         */
     }
 
-    public void updateTeamScore(String team) // may need updating, just an idea of how to update team score (SPRINT 4+)
-    {
-        if (team == "red")
-        {
-            int red_current_score = Integer.parseInt(red_team_score.getText());
-            int red_new_score = red_current_score + POINTS_ON_HIT;
-            red_team_score.setText(Integer.toString(red_new_score));
-        } else if (team == "green")
-        {
-            int green_current_score = Integer.parseInt(green_team_score.getText());
-            int green_new_score = green_current_score + POINTS_ON_HIT;
-            green_team_score.setText(Integer.toString(green_new_score));
-        } else 
-        {
-            System.out.println("ERROR: updateTeamScore() invalid team.");
-        }
-    }
+	// Update the team score. Call this whenever a player scores to update team scores.
+	public void updateTeamScores()
+	{
+		List<Player> redPlayers = presenter.model.acitveRedPlayers;
+		List<Player> greenPlayers = presenter.model.acitveGreenPlayers;
+		int redScore = 0;
+		int greenScore = 0;
+		for (int i = 0; i < redPlayers.size(); i++)
+		{
+			redScore = redScore + redPlayers.get(i).getScore();
+		}
+		for (int i = 0; i < greenPlayers.size(); i++)
+		{
+			greenScore = greenScore + greenPlayers.get(i).getScore();
+		}
+		red_team_score.setText(String.valueOf(redScore));
+		green_team_score.setText(String.valueOf(greenScore));
+	}
 
-    //Game Action Functions
+    // Adds new game event to list. Call then whenever a player scores to show event.
     public void updateGameAction(Player hitter, Player hit)
     {
         String newEvent = getGameEventString(hitter, hit);
@@ -536,6 +540,7 @@ public class GameAction
         game_action_10.setText(newEvent);
     }
 
+	// Helper function for updateGameAction.
     public String getGameEventString(Player hitter, Player hit) // "codenameHitter hit codenameHit"
     {
         String codenameHitter = hitter.getCodename();
@@ -560,6 +565,7 @@ public class GameAction
 		return formattedStr; 
     }
 
+	// Timer for the flashing scores
 	Timer flashTimer = new Timer();
 		TimerTask flashTask = new TimerTask() {
 			public void run() {
