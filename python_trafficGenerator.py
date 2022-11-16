@@ -1,22 +1,28 @@
-import socket
 import random
+import socket
 import time
+import sys
 
 bufferSize  = 1024
-serverAddressPort   = ("127.0.0.1", 7501)
+serverAddressPort   = ("127.0.0.1", 1234)
 
 
 print('this program will generate some test traffic for 2 players on the red ')
 print('team as well as 2 players on the green team')
 print('')
 
-red1 = input('Enter id of red player 1 ==> ')
-red2 = input('Enter id of red player 2 ==> ')
-green1 = input('Enter id of green player 1 ==> ')
-green2 = input('Enter id of green player 2 ==> ')
+#red1 = input('Enter id of red player 1 ==> ')
+#red2 = input('Enter id of red player 2 ==> ')
+#green1 = input('Enter id of green player 1 ==> ')
+#green2 = input('Enter id of green player 2 ==> ')
+red1 = sys.argv[1]
+red2 = sys.argv[2]
+green1 = sys.argv[3]
+green2 = sys.argv[4]
 
 print('')
-counter = input('How many events do you want ==> ')
+#counter = input('How many events do you want ==> ')
+counter = 10
 
 # Create datagram socket
 UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -45,3 +51,4 @@ while i < int(counter):
 	time.sleep(random.randint(1,3))
 	
 print("program complete")
+UDPClientSocketTransmit.sendto(str.encode(str("bye")), serverAddressPort)

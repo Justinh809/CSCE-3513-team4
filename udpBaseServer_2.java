@@ -3,6 +3,8 @@
 // Java program to illustrate Server side
 // Implementation using DatagramSocket
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -15,6 +17,25 @@ public class udpBaseServer_2 {
         byte[] receive = new byte[65535];
 
         DatagramPacket DpReceive = null;
+        try {
+
+            String pythonFileName = "python_trafficGenerator.py";
+            String currentDir = System.getProperty("user.dir");
+            System.out.println(currentDir);
+            int number1 = 1;
+            int number2 = 2;
+            int number3 = 3;
+            int number4 = 4;
+            String pythonEx = "py " + pythonFileName + " " + number1 + " " + number2 + " " + number3 + " " + number4;
+            ProcessBuilder newP = new ProcessBuilder("cmd.exe", "/C", pythonEx);
+            newP.redirectErrorStream(true);
+            Process p = newP.start();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
         while (true) {
 
             // Step 2 : create a DatgramPacket to receive the data.
