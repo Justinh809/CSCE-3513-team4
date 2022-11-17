@@ -393,7 +393,7 @@ public class GameAction
 				JLabel currentCodenameLabel = red_player_labels.get(i);
 				JLabel currentScoreLabel = red_score_labels.get(i);
 				currentCodenameLabel.setText(sortedRedPlayers.get(i).getCodename());
-				currentScoreLabel.setText(String.valueOf(sortedRedPlayers.get(i).getScore()));
+				currentScoreLabel.setText(String.format("%04d", sortedRedPlayers.get(i).getScore()));
 			}
 		} else // if there are less than 5 players on red team
 		{
@@ -402,7 +402,7 @@ public class GameAction
 				JLabel currentCodenameLabel = red_player_labels.get(i);
 				JLabel currentScoreLabel = red_score_labels.get(i);
 				currentCodenameLabel.setText(sortedRedPlayers.get(i).getCodename());
-				currentScoreLabel.setText(String.valueOf(sortedRedPlayers.get(i).getScore()));
+				currentScoreLabel.setText(String.format("%04d", sortedRedPlayers.get(i).getScore()));
 			}
 		}
 
@@ -413,7 +413,7 @@ public class GameAction
 				JLabel currentCodenameLabel = green_player_labels.get(i);
 				JLabel currentScoreLabel = green_score_labels.get(i);
 				currentCodenameLabel.setText(sortedGreenPlayers.get(i).getCodename());
-				currentScoreLabel.setText(String.valueOf(sortedGreenPlayers.get(i).getScore()));
+				currentScoreLabel.setText(String.format("%04d", sortedGreenPlayers.get(i).getScore()));
 			}
 		} else
 		{
@@ -422,7 +422,7 @@ public class GameAction
 				JLabel currentCodenameLabel = green_player_labels.get(i);
 				JLabel currentScoreLabel = green_score_labels.get(i);
 				currentCodenameLabel.setText(sortedGreenPlayers.get(i).getCodename());
-				currentScoreLabel.setText(String.valueOf(sortedGreenPlayers.get(i).getScore()));
+				currentScoreLabel.setText(String.format("%04d", sortedGreenPlayers.get(i).getScore()));
 			}
 		}
     }
@@ -623,10 +623,10 @@ public class GameAction
 					secondsPassed = 59;
 				}	
 				if(isPregame) {
-					timer_label.setText("Game is about to start... " + Integer.toString(secondsPassed));
+					timer_label.setText("Game is about to start... " + String.format("%02d", secondsPassed));
 				}
 				else {
-					timer_label.setText(Integer.toString(minute) + " : " + Integer.toString(secondsPassed));
+					timer_label.setText(String.format("%02d", minute) + " : " + String.format("%02d", secondsPassed));
 				}
 		}	
     }
