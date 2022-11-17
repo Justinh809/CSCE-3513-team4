@@ -11,29 +11,67 @@ import java.net.SocketException;
 public class udpBaseServer_2 {
     public static void main(String[] args) throws IOException {
         // Step 1 : Create a socket to listen at port 1234
-        DatagramSocket ds = new DatagramSocket(1234);
+
         byte[] receive = new byte[65535];
 
         DatagramPacket DpReceive = null;
-        try {
 
-            String pythonFileName = "python_trafficGenerator.py";
-            String currentDir = System.getProperty("user.dir");
-            System.out.println(currentDir);
-            int number1 = 1;
-            int number2 = 2;
-            int number3 = 3;
-            int number4 = 4;
-            String pythonEx = "py " + pythonFileName + " " + number1 + " " + number2 + " " + number3 + " " + number4;
-            ProcessBuilder newP = new ProcessBuilder("cmd.exe", "/C", pythonEx);
-            newP.redirectErrorStream(true);
-            Process p = newP.start();
+        // set up to send signal first
+        DatagramSocket dsInit = new DatagramSocket();
+        byte IPAddress[] = { 127, 0, 0, 1 };
+        InetAddress address4 = InetAddress.getByAddress(IPAddress);
+        System.out.println(address4);
+        byte[] buf = null;
+        buf = "hello".getBytes();
+        System.out.println(buf);
 
-        } catch (Exception e) {
-            System.out.println(e);
-            e.printStackTrace();
-        }
+        DatagramPacket DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
+        dsInit.send(DpSend);
+        buf = "1".getBytes();
+        System.out.println(buf);
 
+        DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
+        dsInit.send(DpSend);
+        buf = "2".getBytes();
+        System.out.println(buf);
+
+        DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
+        dsInit.send(DpSend);
+        buf = "3".getBytes();
+        System.out.println(buf);
+
+        DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
+        dsInit.send(DpSend);
+        buf = "4".getBytes();
+        System.out.println(buf);
+
+        DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
+        dsInit.send(DpSend);
+
+        System.out.println("sent all id's");
+        /*
+         * try {
+         * 
+         * String pythonFileName = "python_trafficGenerator.py";
+         * String currentDir = System.getProperty("user.dir");
+         * System.out.println(currentDir);
+         * int number1 = 1;
+         * int number2 = 2;
+         * int number3 = 3;
+         * int number4 = 4;
+         * String pythonEx = "py " + pythonFileName + " " + number1 + " " + number2 +
+         * " " + number3 + " " + number4;
+         * ProcessBuilder newP = new ProcessBuilder("cmd.exe", "/C", pythonEx);
+         * newP.redirectErrorStream(true);
+         * Process p = newP.start();
+         * 
+         * } catch (Exception e) {
+         * System.out.println(e);
+         * e.printStackTrace();
+         * }
+         */
+
+        DatagramSocket ds = new DatagramSocket(7501);
         while (true) {
 
             // Step 2 : create a DatgramPacket to receive the data.
