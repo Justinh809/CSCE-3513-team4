@@ -3,8 +3,6 @@
 // Java program to illustrate Server side
 // Implementation using DatagramSocket
 import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -49,6 +47,7 @@ public class udpBaseServer_2 {
             // Exit the server if the client sends "bye"
             if (data(receive).toString().equals("bye")) {
                 System.out.println("Client sent bye.....EXITING");
+                ds.close();
                 break;
             }
 
