@@ -545,7 +545,7 @@ public class GameAction
     public void updateGameAction(Player hitter, Player hit)
     {
         String newEvent = getGameEventString(hitter, hit);
-        for (int i = 8; i > 0; i++)
+        for (int i = 8; i >= 0; i--)
         {
             game_action_labels.get(i).setText(game_action_labels.get(i+1).getText());
         }
