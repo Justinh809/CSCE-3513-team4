@@ -378,7 +378,7 @@ public class GameAction
     }
 
 	// Updates the scoreboard for each team in order of points. Call then when a player scores to resort the list.
-    public void updateScoreboard(List<Player> redPlayers, List<Player> greenPlayers)
+    public void updateScoreboard()
     {
 		final int MAX_PLAYERS_SHOWN = 5;
 		List<Player> sortedRedPlayers = presenter.model.acitveRedPlayers;
@@ -397,7 +397,7 @@ public class GameAction
 			}
 		} else // if there are less than 5 players on red team
 		{
-			for (int i = 0; i < redPlayers.size(); i++)
+			for (int i = 0; i < sortedRedPlayers.size(); i++)
 			{
 				JLabel currentCodenameLabel = red_player_labels.get(i);
 				JLabel currentScoreLabel = red_score_labels.get(i);
@@ -417,7 +417,7 @@ public class GameAction
 			}
 		} else
 		{
-			for (int i = 0; i < greenPlayers.size(); i++)
+			for (int i = 0; i < sortedGreenPlayers.size(); i++)
 			{
 				JLabel currentCodenameLabel = green_player_labels.get(i);
 				JLabel currentScoreLabel = green_score_labels.get(i);
@@ -435,21 +435,27 @@ public class GameAction
 
 		if (red_score > green_score)
 		{
-			if (red_team_score.isVisible())
+			if (red_score != 0)
 			{
-				red_team_score.setVisible(false);
-			} else
-			{
-				red_team_score.setVisible(true);
+				if (red_team_score.isVisible())
+				{
+					red_team_score.setVisible(false);
+				} else
+				{
+					red_team_score.setVisible(true);
+				}
 			}
 		} else
 		{
-			if (green_team_score.isVisible())
+			if (green_score != 0)
 			{
-				green_team_score.setVisible(false);
-			} else
-			{
-				green_team_score.setVisible(true);
+				if (green_team_score.isVisible())
+				{
+					green_team_score.setVisible(false);
+				} else
+				{
+					green_team_score.setVisible(true);
+				}
 			}
 		}
 	}
@@ -464,25 +470,31 @@ public class GameAction
 
 		if (sortedRedPlayers.get(0).getScore() > sortedGreenPlayers.get(0).getScore())
 		{
-			if (red_player_1.isVisible())
+			if (sortedRedPlayers.get(0).getScore() != 0)
 			{
-				red_player_1.setVisible(false);
-				red_player_1_score.setVisible(false);
-			} else
-			{
-				red_player_1.setVisible(true);
-				red_player_1_score.setVisible(true);
+				if (red_player_1.isVisible())
+				{
+					red_player_1.setVisible(false);
+					red_player_1_score.setVisible(false);
+				} else
+				{
+					red_player_1.setVisible(true);
+					red_player_1_score.setVisible(true);
+				}
 			}
 		} else
 		{
-			if (green_player_1.isVisible())
+			if (sortedGreenPlayers.get(0).getScore() != 0)
 			{
-				green_player_1.setVisible(false);
-				green_player_1_score.setVisible(false);
-			} else
-			{
-				green_player_1.setVisible(true);
-				green_player_1_score.setVisible(true);
+				if (green_player_1.isVisible())
+				{
+					green_player_1.setVisible(false);
+					green_player_1_score.setVisible(false);
+				} else
+				{
+					green_player_1.setVisible(true);
+					green_player_1_score.setVisible(true);
+				}
 			}
 		}
 	}
