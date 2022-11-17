@@ -29,7 +29,7 @@ public class Presenter {
         splash.showSplash();
         // displaying splash for 3 seconds before we move on
         try {
-            Thread.sleep(1000); // I believe this makes the main thread wait 3 seconds
+            Thread.sleep(3000); // I believe this makes the main thread wait 3 seconds
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -43,7 +43,7 @@ public class Presenter {
         addPlayersToList(playerEntry.toBePassed);
         playerEntry.hidePlayerEntry();
         gameAction.showGameAction();
-        gameAction.updateScoreboard(model.acitveRedPlayers, model.acitveGreenPlayers);
+        gameAction.updateScoreboard();
         try {
 
             model.connection.close();
