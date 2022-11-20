@@ -9,7 +9,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 public class udpBaseServer_2 {
-    public static void main(String[] args) throws IOException {
+    public static void run(int red1, int red2, int green1, int green2) throws IOException {
         // Step 1 : Create a socket to listen at port 1234
 
         byte[] receive = new byte[65535];
@@ -27,22 +27,26 @@ public class udpBaseServer_2 {
 
         DatagramPacket DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
         dsInit.send(DpSend);
-        buf = "1".getBytes();
+        String red1String = Integer.toString(red1);
+        buf = red1String.getBytes();
         System.out.println(buf);
 
         DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
         dsInit.send(DpSend);
-        buf = "2".getBytes();
+        String red2String = Integer.toString(red2);
+        buf = red2String.getBytes();
         System.out.println(buf);
 
         DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
         dsInit.send(DpSend);
-        buf = "3".getBytes();
+        String green1String = Integer.toString(green1);
+        buf = green1String.getBytes();
         System.out.println(buf);
 
         DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
         dsInit.send(DpSend);
-        buf = "4".getBytes();
+        String green2String = Integer.toString(green2);
+        buf = green2String.getBytes();
         System.out.println(buf);
 
         DpSend = new DatagramPacket(buf, buf.length, address4, 7500);
