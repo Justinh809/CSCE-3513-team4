@@ -24,8 +24,6 @@ import java.util.ArrayList;
 
 public class GameAction
 {
-    final int POINTS_ON_HIT = 100; // update this if needed
-	
 	JFrame frame;
     Presenter presenter;
 	JPanel timer_panel;
@@ -499,29 +497,6 @@ public class GameAction
 		}
 	}
 
-    public void updatePlayerScore(int playerID) // (SPRINT 4+)
-    {
-
-        /* This code may need to go in the presenter/model class.
-        List<Player> redPlayers = presenter.model.acitveRedPlayers;
-		List<Player> greenPlayers = presenter.model.acitveGreenPlayers;
-        for (int i = 0; i < redPlayers.size(); i++)
-        {
-            if (playerID == redPlayers.get(i).getId())
-            {
-                redPlayers.get(i).increaseScore(POINTS_ON_HIT);
-            }
-        }
-        for (int i = 0; i < greenPlayers.size(); i++)
-        {
-            if (playerID == greenPlayers.get(i).getId())
-            {
-                greenPlayers.get(i).increaseScore(POINTS_ON_HIT);
-            }
-        }
-        */
-    }
-
 	// Update the team score. Call this whenever a player scores to update team scores.
 	public void updateTeamScores()
 	{
@@ -544,36 +519,48 @@ public class GameAction
     // Adds new game event to list. Call then whenever a player scores to show event.
     public void updateGameAction(Player hitter, Player hit)
     {
-        String newEvent = getGameEventString(hitter, hit);
+		String newEvent = "";
+		try {
+        	newEvent = getGameEventString(hitter, hit);
+		} catch (Exception e) {
+			System.out.println("ERROR: Player not found in GameAction.updateGameAction()");
+		}
         for (int i = 0; i <= 8; i++)
         {
-		game_action_labels.get(i).setText(game_action_labels.get(i+1).getText());
+			game_action_labels.get(i).setText(game_action_labels.get(i+1).getText());
         }
+		//System.out.println(newEvent);
         game_action_10.setText(newEvent);
     }
 
 	// Helper function for updateGameAction.
     public String getGameEventString(Player hitter, Player hit) // "codenameHitter hit codenameHit"
     {
-        String codenameHitter = hitter.getCodename();
-        String codenameHit = hit.getCodename();
-        String hitterTeam;
-        String hitTeam;
-        if (hitter.isRedTeam())
-        {
-            hitterTeam = "RED";
-        } else
-        {
-            hitterTeam = "GREEN";
-        }
-        if (hit.isRedTeam())
-        {
-            hitTeam = "RED";
-        } else
-        {
-            hitTeam = "GREEN";
-        }
-        String formattedStr = "<html><font color='" + hitterTeam + "'>" + codenameHitter + "</font> hit <font color='" + hitTeam + "'>" + codenameHit + "<\font>";
+		String codenameHitter = "";
+		String codenameHit = "";
+		String hitterTeam = "";
+		String hitTeam = "";
+		try {
+			codenameHitter = hitter.getCodename();
+			codenameHit = hit.getCodename();
+			if (hitter.isRedTeam())
+			{
+				hitterTeam = "RED";
+			} else
+			{
+				hitterTeam = "GREEN";
+			}
+			if (hit.isRedTeam())
+			{
+				hitTeam = "RED";
+			} else
+			{
+				hitTeam = "GREEN";
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR: Player not found in GameAction.getGameEventString()");
+		}
+        String formattedStr = "<html><font color='" + hitterTeam + "'>" + codenameHitter + "</font> hit <font color='" + hitTeam + "'>" + codenameHit + "</font>";
 		return formattedStr; 
     }
 
@@ -643,4 +630,28 @@ public class GameAction
     {
         frame.setVisible(false);
     }
+
+	// TESTING FUNCTIONALITY
+	public void testGameAction()
+	{
+		List<Player> redPlayers = presenter.model.acitveRedPlayers;
+		List<Player> greenPlayers = presenter.model.acitveGreenPlayers;
+		redPlayers.get(0).increaseScore(1000);
+		greenPlayers.get(1).increaseScore(740);
+		greenPlayers.get(2).increaseScore(5000);
+		redPlayers.get(3).increaseScore(1001);
+		redPlayers.get(2).increaseScore(520);
+		updateGameAction(redPlayers.get(0), greenPlayers.get(2));
+		updateGameAction(greenPlayers.get(1), redPlayers.get(2));
+		updateGameAction(greenPlayers.get(2), redPlayers.get(0));
+		updateGameAction(redPlayers.get(0), greenPlayers.get(1));
+		updateGameAction(redPlayers.get(1), greenPlayers.get(2));
+		updateGameAction(greenPlayers.get(2), redPlayers.get(1));
+		updateGameAction(redPlayers.get(3), greenPlayers.get(2));
+		updateGameAction(greenPlayers.get(0), redPlayers.get(1));
+		updateGameAction(greenPlayers.get(1), redPlayers.get(1));
+		updateGameAction(redPlayers.get(2), greenPlayers.get(3));
+		updateGameAction(redPlayers.get(3), greenPlayers.get(0));
+		updateGameAction(greenPlayers.get(0), redPlayers.get(0));
+	}
 }
