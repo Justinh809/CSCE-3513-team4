@@ -44,8 +44,15 @@ public class Presenter {
         playerEntry.hidePlayerEntry();
         gameAction.showGameAction();
         gameAction.updateScoreboard();
-        try {
 
+        // UNCOMMENT THIS TO TEST THE GAME ACTION SCREEN
+        /*
+        gameAction.testGameAction();
+        gameAction.updateScoreboard();
+        gameAction.updateTeamScores();
+        */
+
+        try {
             model.connection.close();
             // System.exit(1);
         } catch (SQLException e) {
