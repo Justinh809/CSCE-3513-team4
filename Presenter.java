@@ -5,6 +5,7 @@
  * Handles communication between model and the view screens
  */
 
+import java.io.IOException;
 import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
 import java.util.List;
