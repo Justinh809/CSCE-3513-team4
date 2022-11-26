@@ -19,7 +19,6 @@ public class Presenter {
 
     // constructor will initialize the model and each view
     Presenter() {
-
         splash = new SplashScreen(); // load splash screen
         model = new Model(); // load model
         playerEntry = new PlayerEntry(this); // Load player entry screen with this as paramater
@@ -120,6 +119,18 @@ public class Presenter {
             Player p = createPlayer(Integer.parseInt(list.get(i).get(0)), list.get(i).get(1), redTeam);
             model.addPlayer(p, redTeam);
         }
+    }
+
+    void startSocket()
+    {
+        try {
+            udpBaseServer_2.run(model.acitveRedPlayers.get(0).getId(), model.acitveRedPlayers.get(1).getId(), model.acitveGreenPlayers.get(0).getId(), model.acitveGreenPlayers.get(1).getId());
+        }
+        catch (IOException io)
+        {
+            io.printStackTrace();
+        }
+            
     }
 
     void kill() { // exit game button or something can call this

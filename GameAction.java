@@ -606,6 +606,10 @@ public class GameAction
 			secondsPassed--;
 				if(secondsPassed < 0){
 					minute--;
+					if(isPregame)
+					{
+						presenter.startSocket();
+					}
 					isPregame = false;
 					secondsPassed = 59;
 				}	
