@@ -63,6 +63,8 @@ public class Presenter {
 
     void update() {
         // doesn't look like anything needs to be constantly updated since
+        gameAction.updateTeamScores();
+        gameAction.updateScoreboard();
     }
 
     public int searchDataBaseForPlayer(JTextField id_field, JTextField codename_field) {
@@ -124,7 +126,7 @@ public class Presenter {
     void startSocket()
     {
         try {
-            udpBaseServer_2 .runn(model.acitveRedPlayers.get(0).getId(), model.acitveRedPlayers.get(1).getId(), model.acitveGreenPlayers.get(0).getId(), model.acitveGreenPlayers.get(1).getId());
+            udpBaseServer_2 .runn(this, model.acitveRedPlayers.get(0).getId(), model.acitveRedPlayers.get(1).getId(), model.acitveGreenPlayers.get(0).getId(), model.acitveGreenPlayers.get(1).getId());
         }
         catch (IOException io)
         {
@@ -133,8 +135,38 @@ public class Presenter {
             
     }
 
+    public void readAttack(int attacker, int victim){
+        Player a = findPlayer(attacker);
+        Player v = findPlayer(victim);
+        gameAction.updateGameAction(a, v);
+        updatePlayerScores(a);
+    }
+
+    public Player findPlayer(int playerID)
+    {
+        for(int i = 0; i < model.acitveGreenPlayers.size(); i++)
+        {
+            if(model.acitveGreenPlayers.get(i).getId() == playerID)
+            {
+                return model.acitveGreenPlayers.get(i);
+            }
+        }
+        for(int i = 0; i < model.acitveRedPlayers.size(); i++)
+        {
+            if(model.acitveRedPlayers.get(i).getId() == playerID)
+            {
+                return model.acitveRedPlayers.get(i);
+            }
+        }
+        return null;
+    }
+    public void updatePlayerScores(Player p)
+    {
+        p.increaseScore(10);
+        System.out.println(p.getScore());
+    }
+
     void kill() { // exit game button or something can call this
         System.exit(1);
     }
-
 }
