@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketException;
+//import java.net.SocketException;
 
 public class udpBaseServer_2 {
     public static void runn(int red1, int red2, int green1, int green2) throws IOException {
@@ -90,6 +90,7 @@ public class udpBaseServer_2 {
             if (data(receive).toString().equals("bye")) {
                 System.out.println("Client sent bye.....EXITING");
                 ds.close();
+                dsInit.close();
                 break;
             }
 

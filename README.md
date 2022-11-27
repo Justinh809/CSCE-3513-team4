@@ -1,15 +1,26 @@
 # CSCE-3513-team4
 University of Arkansas CSCE 3513 Team 4. Laser tag software!!
 
-Dependencies Required to Run: Java 8 or higher
+Overview: 
+    This project is a demonstration of laser tag software. It uses a simulated data traffic that would normally
+    come from the laser tag equipment. It will only run two players on each team, but can easily be modified to 
+    run with actual equipment with up to 15 players per team. 
 
-Download Repository via Github or as .zip and extract.
+    The traffic generator needs to be started before the game starts. It is best to run the traffic generator 
+    before you even run the laser tag program, as shown in the "To Run Software" section. 
+
+Prerequisites: 
+    Java 8 or higher. (make sure your path is set properly)
+    updated python (3.11 works)
+    download zip file from github and extract to the folder of your choice
 
 To Run Software:
 
-    Mac: Run Bash build.bash
+    Mac: Run: Bash Traffic.bash
+         then run: Bash LaserTag.bash
 
-    Windows: Run build.bat
+    Windows: Run: Traffic.bat
+             then run: LaserTag.bat
 
 Player Entry:
 
