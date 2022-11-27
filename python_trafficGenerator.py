@@ -74,7 +74,7 @@ while run:
 
 print("Now time to send")
 #counter = input('How many events do you want ==> ')
-counter = 10
+counter = 30
 
 # Create datagram socket
 UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
