@@ -87,12 +87,15 @@ public class udpBaseServer_2 {
             // Step 3 : revieve the data in byte buffer.
             ds.receive(DpReceive);
             String action = data(receive).toString();
+            
+            String[] arr = action.split(":", 2);
 
-            char attacker = action.charAt(0);
-            char victim = action.charAt(2);
-            presenter.readAttack(attacker, victim);
-            //System.out.println("Attacker: " + attacker + " Victim: " + victim);
-            //System.out.println("Client:-" + data(receive));
+            String attacker = arr[0];
+            int att = Integer.parseInt(attacker);
+            String victim = arr[1];
+            int vic = Integer.parseInt(victim);
+            
+            presenter.readAttack(att, vic);
 
             // Exit the server if the client sends "bye"
             if (data(receive).toString().equals("bye")) {

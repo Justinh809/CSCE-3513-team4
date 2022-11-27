@@ -137,7 +137,7 @@ public class Presenter {
         System.exit(1);
     }
 
-    public void readAttack(char attacker, char victim){
+    public void readAttack(int attacker, int victim){
         System.out.println("Player " + attacker + " hit " + victim);
     }
 }
