@@ -9,8 +9,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 public class udpBaseServer_2 {
-    
-    public static void run(int red1, int red2, int green1, int green2) throws IOException {
+    public static void runn(int red1, int red2, int green1, int green2) throws IOException {
         // Step 1 : Create a socket to listen at port 1234
         Presenter presenter;
         
