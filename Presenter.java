@@ -62,7 +62,6 @@ public class Presenter {
     }
 
     void update() {
-        // doesn't look like anything needs to be constantly updated since
         gameAction.updateTeamScores();
         gameAction.updateScoreboard();
     }
