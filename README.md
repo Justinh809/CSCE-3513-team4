@@ -11,7 +11,7 @@ Overview:
 
 Prerequisites: 
     Java 8 or higher. (make sure your path is set properly)
-    updated python (3.11 works)
+    updated python (3 works)
     download zip file from github and extract to the folder of your choice
 
 To Run Software:
