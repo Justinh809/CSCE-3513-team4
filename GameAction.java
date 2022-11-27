@@ -385,7 +385,7 @@ public class GameAction
 		List<Player> sortedGreenPlayers = presenter.model.acitveGreenPlayers;
 		Collections.sort(sortedRedPlayers);
 		Collections.sort(sortedGreenPlayers);
-
+	
 		if (sortedRedPlayers.size() > MAX_PLAYERS_SHOWN) // if there are more players than 5 on red team
 		{
 			for (int i = 0; i < MAX_PLAYERS_SHOWN; i++)
@@ -437,6 +437,7 @@ public class GameAction
 		{
 			if (red_score != 0)
 			{
+				green_team_score.setVisible(true);
 				if (red_team_score.isVisible())
 				{
 					red_team_score.setVisible(false);
@@ -449,6 +450,7 @@ public class GameAction
 		{
 			if (green_score != 0)
 			{
+				red_team_score.setVisible(true);
 				if (green_team_score.isVisible())
 				{
 					green_team_score.setVisible(false);
@@ -468,15 +470,25 @@ public class GameAction
 		Collections.sort(sortedRedPlayers);
 		Collections.sort(sortedGreenPlayers);
 
+		// for (int i = 1; i < red_player_labels.size(); i++) // added to ensure all of the text labels are visible except for flashing ones
+		// {
+		// 	red_player_labels.get(i).setVisible(true);
+		// 	green_player_labels.get(i).setVisible(true);
+		// 	red_score_labels.get(i).setVisible(true);
+		// 	green_score_labels.get(i).setVisible(true);
+		// }
+
 		if (sortedRedPlayers.get(0).getScore() > sortedGreenPlayers.get(0).getScore())
 		{
 			if (sortedRedPlayers.get(0).getScore() != 0)
 			{
+				green_player_1.setVisible(true);
+				green_player_1_score.setVisible(true);
 				if (red_player_1.isVisible())
 				{
 					red_player_1.setVisible(false);
 					red_player_1_score.setVisible(false);
-				} else
+				} else 
 				{
 					red_player_1.setVisible(true);
 					red_player_1_score.setVisible(true);
@@ -486,6 +498,8 @@ public class GameAction
 		{
 			if (sortedGreenPlayers.get(0).getScore() != 0)
 			{
+				red_player_1.setVisible(true);
+				red_player_1_score.setVisible(true);
 				if (green_player_1.isVisible())
 				{
 					green_player_1.setVisible(false);
