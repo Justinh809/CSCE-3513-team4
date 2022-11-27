@@ -9,9 +9,12 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 public class udpBaseServer_2 {
+    
     public static void run(int red1, int red2, int green1, int green2) throws IOException {
         // Step 1 : Create a socket to listen at port 1234
-
+        Presenter presenter;
+        
+        presenter = new Presenter();
         byte[] receive = new byte[65535];
 
         DatagramPacket DpReceive = null;
@@ -83,8 +86,13 @@ public class udpBaseServer_2 {
 
             // Step 3 : revieve the data in byte buffer.
             ds.receive(DpReceive);
+            String action = data(receive).toString();
 
-            System.out.println("Client:-" + data(receive));
+            char attacker = action.charAt(0);
+            char victim = action.charAt(2);
+            presenter.readAttack(attacker, victim);
+            //System.out.println("Attacker: " + attacker + " Victim: " + victim);
+            //System.out.println("Client:-" + data(receive));
 
             // Exit the server if the client sends "bye"
             if (data(receive).toString().equals("bye")) {
