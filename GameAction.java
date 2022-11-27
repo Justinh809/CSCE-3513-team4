@@ -27,6 +27,8 @@ public class GameAction
 	JFrame frame;
     Presenter presenter;
 	JPanel timer_panel;
+	Timer myTimer = new Timer();
+	Timer flashTimer = new Timer();
 	JPanel live_action_panel;
 	JPanel red_score_panel;
 	JPanel green_score_panel;
@@ -565,32 +567,30 @@ public class GameAction
     }
 
 	// Timer for the flashing scores
-	Timer flashTimer = new Timer();
-		TimerTask flashTask = new TimerTask() {
-			public void run() {
-				flashHighestPlayer();
-				flashHighestTeam();
-			}
-		};
+	TimerTask flashTask = new TimerTask() {
+		public void run() {
+			flashHighestPlayer();
+			flashHighestTeam();
+		}
+	};
 	
 	public void startFlashTimer() {
 		flashTimer.scheduleAtFixedRate(flashTask, 750, 750);
 	}
 
     //Timer Functions
-	int secondsPassed = 31;
+	int secondsPassed = 15; //Needs to be changed back to 31
 	int minute = 6;
 	boolean isPregame = true;
 	boolean gameOver = false;
 
-	Timer myTimer = new Timer();
-		TimerTask task = new TimerTask() {
-			public void run (){
-				updateTimer();
-				// flashHighestPlayer();
-				// flashHighestTeam();
-			}
-		};
+	TimerTask task = new TimerTask() {
+		public void run (){
+			updateTimer();
+			// flashHighestPlayer();
+			// flashHighestTeam();
+		}
+	};
 
 	public void startTimer(){
 		myTimer.scheduleAtFixedRate(task, 1000, 1000);

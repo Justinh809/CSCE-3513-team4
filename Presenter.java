@@ -124,7 +124,7 @@ public class Presenter {
     void startSocket()
     {
         try {
-            udpBaseServer_2.run(model.acitveRedPlayers.get(0).getId(), model.acitveRedPlayers.get(1).getId(), model.acitveGreenPlayers.get(0).getId(), model.acitveGreenPlayers.get(1).getId());
+            udpBaseServer_2 .runn(model.acitveRedPlayers.get(0).getId(), model.acitveRedPlayers.get(1).getId(), model.acitveGreenPlayers.get(0).getId(), model.acitveGreenPlayers.get(1).getId());
         }
         catch (IOException io)
         {
