@@ -13,6 +13,8 @@ public class udpBaseServer_2 {
         // Step 1 : Create a socket to listen at port 1234
         byte[] receive = new byte[65535];
 
+        GameAction game = new GameAction(p);
+
         DatagramPacket DpReceive = null;
 
         // set up to send signal first
@@ -92,6 +94,7 @@ public class udpBaseServer_2 {
                 ds.close();
                 break;
             }
+
             else
             {
                 String[] arr = action.split(":", 2);

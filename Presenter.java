@@ -6,6 +6,7 @@
  */
 
 import java.io.IOException;
+import java.net.Socket;
 import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
 import java.util.List;
@@ -64,6 +65,7 @@ public class Presenter {
     void update() {
         gameAction.updateTeamScores();
         gameAction.updateScoreboard();
+
     }
 
     public int searchDataBaseForPlayer(JTextField id_field, JTextField codename_field) {
