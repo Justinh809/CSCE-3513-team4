@@ -26,9 +26,11 @@ public class GameAction
 {
 	JFrame frame;
     Presenter presenter;
+	udpBaseServer_2 udp;
 	JPanel timer_panel;
 	Timer myTimer = new Timer();
 	Timer flashTimer = new Timer();
+	Timer newTimer = new Timer();
 	JPanel live_action_panel;
 	JPanel red_score_panel;
 	JPanel green_score_panel;
@@ -592,17 +594,27 @@ public class GameAction
 		flashTimer.scheduleAtFixedRate(flashTask, 750, 750);
 	}
 
+	TimerTask socketTask = new TimerTask() {
+		public void run (){
+			presenter.startSocket();
+		}
+	};
+
+	public void startSocketTaskTimer (){
+		newTimer.scheduleAtFixedRate(socketTask,1000, 1000);
+	}
+
+	
     //Timer Functions
-	int secondsPassed = 15; //Needs to be changed back to 31
+	int secondsPassed = 31; //Needs to be changed back to 31
 	int minute = 6;
 	boolean isPregame = true;
-	boolean gameOver = false;
+	boolean gameOver;
+	boolean socketStarted = false;
 
 	TimerTask task = new TimerTask() {
 		public void run (){
 			updateTimer();
-			// flashHighestPlayer();
-			// flashHighestTeam();
 		}
 	};
 
@@ -614,23 +626,29 @@ public class GameAction
 	{
 		if(minute <= 0 && secondsPassed <= 0) {
 			timer_label.setText("GAME OVER");
+			presenter.gameOver = true;
+			socketTask.cancel();
 			task.cancel();
 		}
 		else {
 			secondsPassed--;
 				if(secondsPassed < 0){
 					minute--;
+					
 					if(isPregame)
 					{
-						presenter.startSocket();
+						startSocketTaskTimer();
+						
 					}
+
 					isPregame = false;
 					secondsPassed = 59;
-				}	
+				}
+				
 				if(isPregame) {
 					timer_label.setText("Game is about to start... " + String.format("%02d", secondsPassed));
 				}
-				else {
+				else  {
 					timer_label.setText(String.format("%02d", minute) + " : " + String.format("%02d", secondsPassed));
 				}
 		}	

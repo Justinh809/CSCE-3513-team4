@@ -13,6 +13,8 @@ public class udpBaseServer_2 {
         // Step 1 : Create a socket to listen at port 1234
         byte[] receive = new byte[65535];
 
+        GameAction game = new GameAction(p);
+
         DatagramPacket DpReceive = null;
 
         // set up to send signal first
@@ -83,16 +85,22 @@ public class udpBaseServer_2 {
             // Step 3 : revieve the data in byte buffer.
             ds.receive(DpReceive);
             String action = data(receive).toString();
-            
-            
 
             // Exit the server if the client sends "bye"
-            if (action.equals("bye")) {
+            if (action.equals("bye" )) {
                 System.out.println("Client sent bye.....EXITING");
                 ds.close();
                 dsInit.close();
                 break;
             }
+
+            //Exit if game over
+            else if (p.gameOver){
+                ds.close();
+                System.out.println("Game is over");
+                break;
+            }
+
             else
             {
                 String[] arr = action.split(":", 2);
@@ -101,7 +109,9 @@ public class udpBaseServer_2 {
                 String victim = arr[1];
                 int vic = Integer.parseInt(victim);
                 p.readAttack(att, vic);
+
             }
+
 
             // Clear the buffer after every message.
             receive = new byte[65535];

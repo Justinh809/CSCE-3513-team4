@@ -6,6 +6,7 @@
  */
 
 import java.io.IOException;
+import java.net.Socket;
 import java.sql.*;
 //import java.util.Scanner;     //Testing Purposes reading input without UI
 import java.util.List;
@@ -16,6 +17,7 @@ public class Presenter {
     SplashScreen splash; // create a splash screen inside presenter
     PlayerEntry playerEntry;
     GameAction gameAction;
+    boolean gameOver = false;
 
     // constructor will initialize the model and each view
     Presenter() {
@@ -23,6 +25,8 @@ public class Presenter {
         model = new Model(); // load model
         playerEntry = new PlayerEntry(this); // Load player entry screen with this as paramater
         gameAction = new GameAction(this);
+        
+
     }
 
     public void startApp() {
@@ -64,6 +68,7 @@ public class Presenter {
     void update() {
         gameAction.updateTeamScores();
         gameAction.updateScoreboard();
+
     }
 
     public int searchDataBaseForPlayer(JTextField id_field, JTextField codename_field) {
