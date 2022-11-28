@@ -26,6 +26,7 @@ public class GameAction
 {
 	JFrame frame;
     Presenter presenter;
+	udpBaseServer_2 udp;
 	JPanel timer_panel;
 	Timer myTimer = new Timer();
 	Timer flashTimer = new Timer();
@@ -605,24 +606,15 @@ public class GameAction
 
 	
     //Timer Functions
-	int secondsPassed = 5; //Needs to be changed back to 31
-	int minute = 1;
+	int secondsPassed = 31; //Needs to be changed back to 31
+	int minute = 6;
 	boolean isPregame = true;
-	boolean gameOver = false;
+	boolean gameOver;
 	boolean socketStarted = false;
-
-
 
 	TimerTask task = new TimerTask() {
 		public void run (){
 			updateTimer();
-		
-		}
-	};
-
-	TimerTask socketRun = new TimerTask() {
-		public void run (){
-			presenter.startSocket();
 		}
 	};
 
@@ -634,10 +626,9 @@ public class GameAction
 	{
 		if(minute <= 0 && secondsPassed <= 0) {
 			timer_label.setText("GAME OVER");
-			gameOver = true;
-			task.cancel();
+			presenter.gameOver = true;
 			socketTask.cancel();
-			
+			task.cancel();
 		}
 		else {
 			secondsPassed--;
@@ -647,10 +638,11 @@ public class GameAction
 					if(isPregame)
 					{
 						startSocketTaskTimer();
+						
 					}
 
 					isPregame = false;
-					secondsPassed = 5;
+					secondsPassed = 59;
 				}
 				
 				if(isPregame) {

@@ -17,6 +17,7 @@ public class Presenter {
     SplashScreen splash; // create a splash screen inside presenter
     PlayerEntry playerEntry;
     GameAction gameAction;
+    boolean gameOver = false;
 
     // constructor will initialize the model and each view
     Presenter() {
@@ -24,6 +25,8 @@ public class Presenter {
         model = new Model(); // load model
         playerEntry = new PlayerEntry(this); // Load player entry screen with this as paramater
         gameAction = new GameAction(this);
+        
+
     }
 
     public void startApp() {
